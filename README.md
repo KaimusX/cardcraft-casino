@@ -1,4 +1,5 @@
 # cardcraft-casino
 
 #	Names:
-#		Jakub Belik
+		Jakub Belik
+        Luis Franco
