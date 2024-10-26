@@ -64,7 +64,12 @@
       const currentBalance = await fetchOrCreateUserBalance(user.uid);
       userDetails.innerHTML = `<h3>Hello ${user.displayName}!</h3>
         <p>User ID: ${user.uid}</p>
-        <p>Balance: ${currentBalance}</p>`;
+        <p>Balance: ${currentBalance}</p>
+        <a href="./blackjack/blackjack.html"> Blackjack </a>
+        <br>
+        <a href="./mines/mines.html"> Mines </a>
+        <br>
+        <a href="./slots/slots.html"> Slots </a?`;
 
     } else {
       // not signed in
