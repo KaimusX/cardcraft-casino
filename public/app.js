@@ -62,14 +62,26 @@
       whenSignedIn.hidden = false;
       whenSignedOut.hidden = true;
       const currentBalance = await fetchOrCreateUserBalance(user.uid);
-      userDetails.innerHTML = `<h3>Hello ${user.displayName}!</h3>
-        <p>User ID: ${user.uid}</p>
-        <p>Balance: ${currentBalance}</p>
-        <a href="./blackjack/blackjack.html"> Blackjack </a>
-        <br>
-        <a href="./mines/mines.html"> Mines </a>
-        <br>
-        <a href="./slots/slots.html"> Slots </a?`;
+      userDetails.innerHTML = `
+        <h3>Hello ${user.displayName}!</h3>
+            <p>User ID: ${user.uid}</p>
+            <p class="balance-label">Balance:</p>
+            <p class="balance-amount">$${currentBalance}</p>
+            <div class="game-selection">
+                <div class="game-card blackjack" onclick="window.location.href='./blackjack/blackjack.html'">
+                    <span class="game-icon">♠️</span>
+                    <span class="game-name">Blackjack</span>
+                </div>
+                <div class="game-card mines"onclick="window.location.href='./mines/mines.html'">
+                    <span class="game-icon">💣</span>
+                    <span class="game-name">Mines</span>
+                </div>
+                <div class="game-card slots" onclick="window.location.href='./slots/slots.html'">
+                    <span class="game-icon">🎰</span>
+                    <span class="game-name">Slots</span>
+                </div>
+            </div>
+            `;
 
     } else {
       // not signed in
@@ -95,7 +107,6 @@
         // Document exists return balance
         const userDoc = querySnapshot.docs[0];
         const userData = userDoc.data();
-        console.log(`Balance: ${userData.balance}`);
         return userData.balance;
       } else {
         // No doc found

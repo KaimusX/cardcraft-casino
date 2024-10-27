@@ -1,0 +1,155 @@
+/* Main container styling */
+body {
+    font-family: Arial, sans-serif;
+    background: #2b2b2b;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+h1 {
+    font-size: 2.5rem;
+    color: #0ffbff;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px #000;
+}
+
+/* Button styling */
+.btn {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    background-color: #ff7733;
+    transform: scale(1.05);
+}
+
+.btn:active {
+    background-color: #cc2900;
+}
+
+/* Sign-in and game selection containers */
+#whenSignedOut, #whenSignedIn {
+    text-align: center;
+}
+
+/* User details and game links */
+#userDetails h3 {
+    font-size: 1.8rem;
+    color: #ffcc00;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+}
+
+#userDetails p {
+    font-size: 1rem;
+    color: #ccc;
+}
+
+#userDetails a {
+    display: inline-block;
+    color: #ffcc00;
+    text-decoration: none;
+    font-size: 1.2rem;
+    margin: 0.5rem;
+    padding: 0.5rem 1rem;
+    border-radius: 5px;
+    background: #333;
+    transition: background-color 0.3s;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.3);
+}
+
+#userDetails a:hover {
+    background-color: #444;
+    color: #ffffff;
+}
+
+/* Balance box styling */
+
+
+#userDetails .balance-label {
+    font-size: 1.1rem;
+    font-weight: bold;
+    margin: 0;
+    color: #b8ffb3; /* Softer green for the label */
+}
+
+#userDetails .balance-amount {
+    font-size: 1.8rem;
+    font-weight: bold;
+    margin: 0;
+    color: #00ff00; /* Bright green for the balance amount */
+}
+
+/* Game selection container styling */
+.game-selection {
+    display: flex;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 2rem; /* Add spacing between game cards and the sign-out button */
+}
+
+/* Game card styling */
+.game-card {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    background-color: #333;
+    color: #ffcc00;
+    width: 150px;
+    height: 200px;
+    border-radius: 10px;
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    cursor: pointer;
+    transition: transform 0.3s, background-color 0.3s;
+}
+
+.blackjack {
+    border: 2px solid #f63621; /* Adds a border around each game card */
+}
+
+.mines {
+    border: 2px solid #b83af7
+}
+
+.slots {
+    border: 2px solid #5ee15e
+}
+
+.game-card:hover {
+    transform: scale(1.05);
+    background-color: #444;
+}
+
+/* Game icon and name styling */
+.game-icon {
+    font-size: 2.5rem;
+    margin-bottom: 1rem;
+}
+
+.game-name {
+    font-size: 1.2rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    text-align: center;
+    color: #FFFEFE
+}
+
+/* Sign-out button styling */
+#signOutBtn {
+    margin-top: 1rem;
+}
