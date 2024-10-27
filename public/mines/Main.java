@@ -40,7 +40,8 @@ public class Main {
 
             if (game.checkWin()) {
                 System.out.println("You revealed all safe cells! You win!");
-                game.updateBalance();
+                //game.updateBalance();
+                System.out.printf("Your current balance: $%.2f%n", game.balance);
                 break;
             }
         }
