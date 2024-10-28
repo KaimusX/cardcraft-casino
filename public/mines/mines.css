@@ -1,0 +1,101 @@
+h1 {
+    font-size: 2.5rem;
+    color: #0ffbff;
+    margin-bottom: 2rem;
+    text-shadow: 2px 2px #000;
+    background-color: #292930;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+    background-color: #292930;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+#balance {
+    color: darkblue; /* Text color for balance */
+    font-weight: bold; /* Makes the text bold */
+    font-size: 1.2em; /* Adjusts font size */
+    background-color: lightgray; /* Optional background color */
+    padding: 10px; /* Adds padding for spacing */
+    border-radius: 5px; /* Rounds the corners */
+  }
+
+#reward {
+    color: darkblue; /* Text color for balance */
+    font-weight: bold; /* Makes the text bold */
+    font-size: 1.2em; /* Adjusts font size */
+    background-color: lightgray; /* Optional background color */
+    padding: 10px; /* Adds padding for spacing */
+    border-radius: 5px; /* Rounds the corners */
+  }
+
+table {
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+td {
+    width: 40px;
+    height: 40px;
+    text-align: center;
+    vertical-align: middle;
+    border: 1px solid #000;
+}
+
+.mine {
+    background-color: red;
+}
+
+.revealed {
+    background-color: lightgray;
+}
+
+button {
+    background-color: #4CAF50; 
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 16px;
+    margin: 4px 2px;
+    cursor: pointer;
+    border-radius: 12px;
+    transition: background-color 0.3s ease;
+}
+
+button:hover {
+    background-color: #45a049; 
+}
+
+button:active {
+    background-color: #3e8e41; 
+}
+
+
+
+label[for="selection"] {
+    color: blue; 
+}
+
+#selection {
+    color: green; 
+    background-color: lightyellow; 
+}
+
+
+
+
