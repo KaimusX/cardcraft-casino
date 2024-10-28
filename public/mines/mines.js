@@ -9,6 +9,7 @@ class Mines {
         this.updateBalance();  
         this.placeMines();
         this.renderBoard();
+        this.updateReward();
     }
 
     createBoard() {
@@ -64,6 +65,7 @@ class Mines {
         this.board[row][col] = 'R';
         this.updateBalance();  
         this.renderBoard();
+        this.updateReward();
         return true;
     }
 
@@ -92,6 +94,7 @@ class Mines {
         this.balance *= this.winMultiplier();
         let balanceDiv = document.getElementById("balance");
         balanceDiv.innerHTML = `Current Balance: $${this.balance.toFixed(2)}`;
+        this.updateReward();
     }
 
     checkWin() {
@@ -124,6 +127,13 @@ class Mines {
         }
         gameDiv.appendChild(table);
     }
+
+    updateReward() {
+        let reward = this.balance * this.winMultiplier();
+        let rewardDiv = document.getElementById("reward");
+        rewardDiv.innerHTML = `Next Click Reward: $${reward.toFixed(2)}`;
+    }
+    
 }
 
 let game;
