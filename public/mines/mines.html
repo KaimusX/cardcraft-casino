@@ -5,17 +5,18 @@
     <link rel="stylesheet" type="text/css" href="mines.css">
 </head>
 <body>
-    <h1>Mines</h1>
+    <h1 style="color:rgb(255, 0, 0);">Mines</h1>
     <div>
-        <label>Board Size: <input id="boardSize" type="number" value="10"></label>
-        <label>Mines: <input id="mineCount" type="number" value="10"></label>
-        <label>Initial Balance: <input id="initialBalance" type="number" value="100"></label>
+        <label for="selection">Board Size: <input id="boardSize" type="number" value="10"></label><br><br>
+        <label for="selection">Mines: <input id="mineCount" type="number" value="10"></label><br><br>
+        <label for="selection"> Initial Balance: <input id="initialBalance" type="number" value="100"></label><br><br>
         <button onclick="startGame()">Start Game</button>
         <button onclick="quitGame()">Quit Game</button>
     </div>
     <div id="game-container">
         <div id="game"></div>
         <div id="balance">Current Balance: $0.00</div>
+        <div id="reward">Next Click Reward: $0.00</div>
     </div>
     <script src="mines.js"></script>
 </body>
