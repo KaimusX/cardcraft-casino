@@ -1,3 +1,4 @@
+
 class Mines {
     constructor(size, mines, initialBalance) {
         this.size = size;
@@ -56,6 +57,10 @@ class Mines {
             return false;
         }
         if (this.isMine(row, col)) {
+            game.balance = 0;
+            let balanceDiv = document.getElementById("balance");
+            balanceDiv.innerHTML = `Current Balance: $${game.balance.toFixed(2)}`;
+            this.updateReward();
             alert("You hit a mine! Game over.");
             this.minesHit = true;
             this.revealAll();
