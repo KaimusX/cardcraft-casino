@@ -11,7 +11,9 @@ onAuthStateChanged(auth, (user) => {
     
     // To add to balance
     // updateBalance(userId, 50, 'add');
-    updateBalance(userId, 50, 'remove');
+    // To remove balance
+    // updateBalance(userId, 50, 'remove');
+    
   } else {
     console.log("User not authenticated");
   }
