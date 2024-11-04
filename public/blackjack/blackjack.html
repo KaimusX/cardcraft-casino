@@ -24,8 +24,24 @@
                 .then(response => response.text())
                 .then(data => {
                     document.getElementById(containerId).innerHTML = data;
+                    // Call the function to initialize the loaded section
+                    initializeSection(containerId);
                 })
                 .catch(error => console.error('Error loading section:', error));
+        }
+
+        // Initialize functionality based on the loaded section
+        function initializeSection(sectionId) {
+            if (sectionId === 'dealer-container') {
+                // Initialize dealer functionalities
+                setupDealerFunctions(); // Ensure this function exists in blackjack.js
+            } else if (sectionId === 'player-container') {
+                // Initialize player functionalities
+                setupPlayerFunctions(); // Ensure this function exists in blackjack.js
+            } else if (sectionId === 'game-container') {
+                // Initialize game functionalities
+                setupGameFunctions(); // Ensure this function exists in blackjack.js
+            }
         }
 
         // Load each section
@@ -33,6 +49,7 @@
         loadSection('player-container', 'Sections/player-section.html');
         loadSection('game-container', 'Sections/game-section.html');
     </script>
+    <script src="blackjack.js"></script> <!-- Link to your JavaScript file -->
 </body>
 
 </html>
