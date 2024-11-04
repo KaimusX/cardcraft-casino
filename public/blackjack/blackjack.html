@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="buttons/buttons.css">
     <link rel="stylesheet" href="blackjack.css">
     <title>Blackjack Game</title>
 </head>
@@ -13,36 +12,27 @@
     <h1>BLACKJACK</h1>
     <div class="blackjack-table">
         <div class="left-section">
-            <div class="dealer-section">
-                <h2>Dealer's Hand</h2>
-
-                <div id="button-container"></div>
-
-                <script src="buttons/buttons.js"></script> <!-- Link to button scripts -->
-                <script>
-                    // Load button from buttons.html
-                    fetch('buttons/buttons.html')
-                        .then(response => response.text())
-                        .then(data => {
-                            // Insert only button1 into the container
-                            const parser = new DOMParser();
-                            const doc = parser.parseFromString(data, 'text/html');
-                            const button1 = doc.getElementById('button1');
-                            document.getElementById('button-container').appendChild(button1);
-
-                            // Now the button is in the DOM, the event handler in buttons.js will work.
-                        })
-                        .catch(error => console.error('Error loading button:', error));
-                </script>
-            </div>
-            <div class="player-section">
-                <h2>Player's Hand</h2>
-            </div>
+            <div id="dealer-container"></div>
+            <div id="player-container"></div>
         </div>
-        <div class="game-section">
-            <h2>Game Actions</h2>
-        </div>
+        <div id="game-container"></div>
     </div>
+    <script>
+        // Function to load a section from an HTML file into a container
+        function loadSection(containerId, file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(containerId).innerHTML = data;
+                })
+                .catch(error => console.error('Error loading section:', error));
+        }
+
+        // Load each section
+        loadSection('dealer-container', 'Sections/dealer-section.html');
+        loadSection('player-container', 'Sections/player-section.html');
+        loadSection('game-container', 'Sections/game-section.html');
+    </script>
 </body>
 
 </html>

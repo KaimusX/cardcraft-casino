@@ -21,21 +21,19 @@ body {
 .left-section {
     display: flex; /* Use flexbox to stack dealer and player sections */
     flex-direction: column; /* Stack sections vertically */
-    flex: 1; /* Take up half the width */
+    flex: 1;
 }
 
 .dealer-section,
 .player-section {
     flex: 1; /* Allow each section to take equal height */
-    padding: 10px;
-    color: white; /* White text color */
     border: 2px solid #050505; /* Separator for sections */
+    
 }
 
 .game-section {
     flex: 1; /* Take up the full height */
     padding: 10px;
-    color: white; /* White text color */
     border-left: 2px solid #050505; /* Left separator */
 }
 
