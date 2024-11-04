@@ -7,35 +7,83 @@ body {
     height: 100vh; /* Full viewport height */
 }
 
+/* Blackjack Table Sections*/
 .blackjack-table {
     width: 98%;
     display: flex; /* Use flexbox for layout */
     height: calc(100% - 60px); /* Adjust for the title */
-    background-color: #2e7d32; /* Darker green for the table */
-    border: 10px solid #050505; /* Dark border */
+    background-color: #35654d; /* Darker green for the table */
+    border: 10px solid white; /* Dark border */
     border-radius: 15px; /* Rounded corners */
-    box-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Shadow effect */
     margin-bottom: 5px;
 }
 
 .left-section {
-    display: flex; /* Use flexbox to stack dealer and player sections */
+    display: flex;
     flex-direction: column; /* Stack sections vertically */
-    flex: 1;
+    width: 60%; /* Take up half of the table's width */
+    padding: 5px;
+
 }
 
 .dealer-section,
 .player-section {
-    flex: 1; /* Allow each section to take equal height */
+    flex: 1;
     border: 2px solid #050505; /* Separator for sections */
-    
+    padding: 5px; /* Padding inside each section */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
 }
+
+.game-section {
+    flex: 1;
+    border-left: 2px solid #050505; /* Left separator */
+    box-sizing: border-box;
+}
+
 
 .game-section {
     flex: 1; /* Take up the full height */
     padding: 10px;
     border-left: 2px solid #050505; /* Left separator */
 }
+
+/* Game Section CSS */
+
+.game-container {
+    display: flex;
+    flex-direction: column; /* Stack rows vertically */
+    height: 100%; /* Full height for game container */
+
+}
+
+.game-row {
+    justify-content: space-between; /* Space out items in each row */
+    align-items: center;
+    padding: 10px;
+    border: 2px solid #050505; /* Optional: border for each row */
+    border-radius: 5px;
+    background-color: #4caf50; /* Optional: background color for each row */
+    flex: 1; /* Each row takes equal space */
+}
+
+.book-button {
+    position: absolute;
+    bottom: 30px;
+    right: 30px;
+    font-size: 60px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.3s, color 0.3s;
+}
+
+.book-button:hover {
+    transform: scale(2.0); /* Slightly enlarge on hover */
+}
+
+
+
+/**/
 
 h1 {
     font-family: 'Arial Black', sans-serif;
