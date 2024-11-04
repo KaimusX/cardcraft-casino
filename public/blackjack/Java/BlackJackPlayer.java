@@ -1,5 +1,6 @@
 import java.util.ArrayList;
 import java.util.List;
+import com.google.gson.Gson;
 
 public class BlackJackPlayer {
     private String name;  // Player's name
@@ -20,8 +21,8 @@ public class BlackJackPlayer {
         return hand;  // Return the list of cards
     }
 
-    @Override
-    public String toString() {
-        return name + "'s hand: " + hand;
+    public String getHandAsJson() {
+        Gson gson = new Gson();
+        return gson.toJson(hand); // Convert hand list to JSON
     }
 }
