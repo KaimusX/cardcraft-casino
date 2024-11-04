@@ -38,3 +38,54 @@ body {
     color: white; /* White text color */
     border-left: 2px solid #050505; /* Left separator */
 }
+
+h1 {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 4rem;
+    background: linear-gradient(45deg, #ff0000, #ffffff); /* Gradient from red to white */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Makes the gradient apply only to text */
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    margin: 20px 0;
+    text-align: center;
+    animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+    }
+    20%, 22%, 24%, 55% {
+        opacity: 0.8;
+    }
+}
+
+/* New styles for the title container */
+.title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+/* New styles for dealer and player cards */
+.dealer-cards, .player-cards {
+    display: flex;
+    gap: 5px; /* Space between cards */
+    margin-top: 10px;
+}
+
+/* Card styling */
+.card {
+    width: 60px;
+    height: 90px;
+    background-color: white;
+    border: 1px solid #050505;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+    margin: 2px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}
