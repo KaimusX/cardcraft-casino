@@ -1,0 +1,37 @@
+.dealer-header {
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    font-size: 2.2rem; 
+    text-align: center; /* Center the text */
+}
+
+
+.card-container {
+    display: flex; /* Use flexbox to arrange items side by side */
+    justify-content: center; /* Center the boxes horizontally */
+    gap: 50px;
+}
+
+.deck-container, .hand-container{
+    display: flex;
+    flex-direction: column; /* Stack the label above the box */
+    align-items: center; /* Center the items */
+}
+
+
+
+.deck-box, .hand-box {
+    background-color: #ffffff; /* Background color for the boxes */
+    padding: 20px; /* Inner spacing for the boxes */
+    width: 120px; /* Set a fixed width for the boxes */
+    height: 180px; /* Set a fixed height for the boxes to make them card-shaped */
+    border-radius: 8px; /* Rounded corners for a nicer look */
+}
+
+.deck-box {
+    background-color: #f9f9f9; /* Light background for the deck box */
+}
+
+.hand-box {
+    background-color: #e0f7fa; /* Light background for the dealer's hand box */
+}
