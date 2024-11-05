@@ -78,9 +78,9 @@
                     <span class="game-icon">💣</span>
                     <span class="game-name">Mines</span>
                 </div>
-                <div class="game-card slots" onclick="window.location.href='./fake-game/fakegame.html'">
-                    <span class="game-icon">XXX</span>
-                    <span class="game-name">Fake game</span>
+                <div class="game-card slots" onclick="window.location.href='./slots/slots.html'">
+                    <span class="game-icon">🎰</span>
+                    <span class="game-name">Slots</span>
                 </div>
             </div>
             `;
