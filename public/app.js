@@ -47,6 +47,8 @@
 
   const userDetails = document.getElementById('userDetails');
 
+  if(signInButton && signOutButton && whenSignedIn && whenSignedOut) {
+
   /// Sign in/out event handlers
   signInButton.onclick = () => {
     signInWithPopup(auth, provider)
@@ -90,6 +92,7 @@
       userDetails.innerHTML = "";
     }
   });
+}
 
   // Firestore
 
@@ -119,3 +122,40 @@
       return 0;
     }
   }
+
+// Function to update user balance across games
+export async function updateBalance(uid, amount, operation) {
+  console.log("updateBalance called with:", uid, amount, operation); // Debug log
+  const balancesCollection = collection(db, 'Balances');
+  const q = query(balancesCollection, where("uid", "==", uid));
+
+  try {
+    const querySnapshot = await getDocs(q);
+
+    if (!querySnapshot.empty) {
+      // Document exists, update balance
+      const userDoc = querySnapshot.docs[0];
+      const userDocRef = userDoc.ref;
+      const userData = userDoc.data();
+
+      let newBalance;
+      if (operation === 'add') {
+        newBalance = userData.balance + amount;
+      } else if (operation === 'remove') {
+        newBalance = userData.balance - amount;
+        if (newBalance < 0) newBalance = 0; // Prevent negative balance
+      }
+
+      await setDoc(userDocRef, { balance: newBalance }, { merge: true });
+      console.log(`Balance updated. New balance: $${newBalance}`);
+      return newBalance;
+
+    } else {
+      console.log("No user document found for updating balance.");
+      return null;
+    }
+  } catch (error) {
+    console.error("Error updating user balance: ", error);
+    return null;
+  }
+}
