@@ -1,0 +1,91 @@
+body {
+    background-color: black; /* Background color for the entire screen */
+    margin: 0; /* Remove default margin */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center; /* Center items horizontally */
+    height: 100vh; /* Full viewport height */
+}
+
+/* Blackjack Table Sections*/
+.blackjack-table {
+    width: 98%;
+    max-width: 1200px; /* Optional max width for larger screens */
+    display: flex; /* Use flexbox for layout */
+    height: calc(100% - 60px); /* Adjust for the title */
+    background-color: #35654d; /* Darker green for the table */
+    /*border: 10px solid white; Dark border */
+    border-radius: 15px; /* Rounded corners */
+    margin-bottom: 5px;
+}
+
+.left-section {
+    display: flex;
+    flex-direction: column; /* Stack sections vertically */
+    width: 60%; /* Take up half of the table's width */
+    padding: 5px;
+
+}
+
+.dealer-section,
+.player-section {
+    flex: 1;
+    /* border: 2px solid #050505; Separator for sections */
+    padding: 5px; /* Padding inside each section */
+    box-sizing: border-box; /* Ensure padding doesn't affect width */
+}
+
+.game-section {
+    flex: 1; /* Take up the full height */
+    padding: 10px;
+    /* border-left: 2px solid #050505; Left separator */
+}
+
+h1 {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 4rem;
+    background: linear-gradient(45deg, #ffffff, #6d6868); /* Gradient from white to black */
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent; /* Makes the gradient apply only to text */
+    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
+    margin: 20px 0;
+    text-align: center;
+    animation: flicker 1.5s infinite;
+}
+
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
+        opacity: 1;
+    }
+    20%, 22%, 24%, 55% {
+        opacity: 0.8;
+    }
+}
+
+.title-container {
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.dealer-cards, .player-cards {
+    display: flex;
+    gap: 5px; /* Space between cards */
+    margin-top: 10px;
+}
+
+/* Card styling */
+.card {
+    width: 10vw;
+    height: 15vh;
+    background-color: white;
+    border: 1px solid #050505;
+    border-radius: 8px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-weight: bold;
+    font-size: 1.2em;
+    color: #333;
+    margin: 2px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+}

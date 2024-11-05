@@ -1,0 +1,40 @@
+.player-header {
+    font-family: 'Arial', sans-serif;
+    color: #ffffff;
+    font-size: 2rem; 
+    text-align: center; /* Center the text */
+    margin: 20px 0; /* Add some margin above and below */
+}
+
+.card-container-plyr {
+    display: flex; /* Use flexbox to arrange items */
+    justify-content: flex-start; /* Align items to the start */
+    align-items: flex-end; /* Align items at the bottom */
+    margin: 0 auto; /* Center the entire card container */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    white-space: nowrap; /* Prevent wrapping of cards */
+    max-width: 100%; /* Set a maximum width */
+    height: 220px; /* Fixed height for the container */
+    padding-left: 20px; /* Space for the first card */
+}
+
+.deck-container-plyr {
+    position: relative; /* Allow absolute positioning of children */
+}
+
+.deck-box {
+    background-color: #f9f9f9; /* Light background for the deck box */
+    padding: 20px; /* Inner spacing for the boxes */
+    width: 120px; /* Set a fixed width for the boxes */
+    height: 180px; /* Set a fixed height for the boxes to make them card-shaped */
+    border-radius: 8px; /* Rounded corners for a nicer look */
+    display: inline-block; /* Prevent stacking in flexbox */
+    margin-left: -40px; /* Pull cards to the left for overlap */
+    position: relative; /* Set position relative for layering */
+    z-index: 1; /* Ensure cards stack above each other */
+    border: black 2px solid;
+}
+
+.deck-box:nth-child(1) {
+    margin-left: 0; /* First card starts without negative margin */
+}
