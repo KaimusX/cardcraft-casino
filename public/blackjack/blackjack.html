@@ -4,12 +4,54 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="blackjack.css">
+    <link rel="stylesheet" href="./Sections/game-section.css">
+    <link rel="stylesheet" href="./Sections/player-section.css">
+    <link rel="stylesheet" href="./Sections/dealer-section.css">
     <title>Blackjack Game</title>
 </head>
 <body>
-    <div class="game-container">
-        <h1>Blackjack Testing</h1>
+    <h1>BLACKJACK</h1>
+    <div class="blackjack-table">
+        <div class="left-section">
+            <div id="dealer-container" class="dealer-section"></div>
+            <div id="player-container" class="player-section"></div>
+        </div>
+        <div id="game-container" class="game-section"></div>
     </div>
-    <script src="blackjack.js"></script>
+    <script>
+        // Function to load a section from an HTML file into a container
+        function loadSection(containerId, file) {
+            fetch(file)
+                .then(response => response.text())
+                .then(data => {
+                    document.getElementById(containerId).innerHTML = data;
+                    // Call the function to initialize the loaded section
+                    initializeSection(containerId);
+                })
+                .catch(error => console.error('Error loading section:', error));
+        }
+
+        // Initialize functionality based on the loaded section
+        function initializeSection(sectionId) {
+            if (sectionId === 'dealer-container') {
+                // Initialize dealer functionalities
+                setupDealerFunctions(); // This function is now defined in dealer-section.js
+            } else if (sectionId === 'player-container') {
+                // Initialize player functionalities
+                setupPlayerFunctions(); // This function is now defined in player-section.js
+            } else if (sectionId === 'game-container') {
+                // Initialize game functionalities
+                setupGameFunctions(); // This function is now defined in game-section.js
+            }
+        }
+
+        // Load each section
+        loadSection('dealer-container', 'Sections/dealer-section.html');
+        loadSection('player-container', 'Sections/player-section.html');
+        loadSection('game-container', 'Sections/game-section.html');
+    </script>
+    <script src="./Sections/dealer-section.js"></script> <!-- Link to dealer section JavaScript -->
+    <script src="./Sections/player-section.js"></script> <!-- Link to player section JavaScript -->
+    <script src="./Sections/game-section.js"></script> <!-- Link to game section JavaScript -->
 </body>
 </html>
