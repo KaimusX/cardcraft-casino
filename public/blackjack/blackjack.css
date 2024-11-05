@@ -97,19 +97,34 @@ body {
 
 .modal-content {
     background-color: white;
-    height: 50%;
+    height: auto; /* Adjust height to fit content */
     width: 70%;
+    max-width: 600px; /* Optional: Limits width on larger screens */
     border-radius: 10px;
-    position: relative; /* Allows absolute positioning within this container */
-    padding: 20px; /* Adds some padding for content */
-    box-sizing: border-box; /* Ensures padding doesn’t add to width/height */
+    position: relative;
+    padding: 20px;
+    box-sizing: border-box;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+}
+
+.rules-list {
+    list-style: none; /* Removes default list styling */
+    padding: 0; /* Removes default padding */
+}
+
+.rule {
+    background-color: #f9f9f9; /* Light background for each rule */
+    border: 1px solid #e0e0e0; /* Light border */
+    border-radius: 5px; /* Rounded corners */
+    padding: 10px; /* Padding for each rule */
+    margin-bottom: 10px; /* Space between rules */
 }
 
 .close-button {
     position: absolute;
-    bottom: 10px; /* Position from the bottom */
-    right: 10px; /* Position from the right */
-    font-size: 30px;
+    bottom: 10px;
+    right: 10px;
+    font-size: 24px;
     background-color: red;
     color: white;
     padding: 5px 10px;
@@ -117,6 +132,9 @@ body {
     border-radius: 5px;
     cursor: pointer;
 }
+
+
+
 
 /**/
 
