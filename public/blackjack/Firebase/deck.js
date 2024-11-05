@@ -1,14 +1,4 @@
 // deck.js
-const admin = require("firebase-admin");
-
-// Initialize Firebase Admin SDK
-const serviceAccount = require("public/blackjack/Firebase/cardcraft-casino-firebase-adminsdk-ld82j-40e2329992.json"); // Path to your service account JSON file
-
-admin.initializeApp({
-  credential: admin.credential.cert(serviceAccount),
-  databaseURL: "https://your-project-id.firebaseio.com",
-});
-
 const db = admin.firestore();
 
 async function createDeck() {
