@@ -1,6 +1,5 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,7 +9,6 @@
     <link rel="stylesheet" href="./Sections/dealer-section.css">
     <title>Blackjack Game</title>
 </head>
-
 <body>
     <h1>BLACKJACK</h1>
     <div class="blackjack-table">
@@ -37,13 +35,13 @@
         function initializeSection(sectionId) {
             if (sectionId === 'dealer-container') {
                 // Initialize dealer functionalities
-                setupDealerFunctions(); // Ensure this function exists in blackjack.js
+                setupDealerFunctions(); // This function is now defined in dealer-section.js
             } else if (sectionId === 'player-container') {
                 // Initialize player functionalities
-                setupPlayerFunctions(); // Ensure this function exists in blackjack.js
+                setupPlayerFunctions(); // This function is now defined in player-section.js
             } else if (sectionId === 'game-container') {
                 // Initialize game functionalities
-                setupGameFunctions(); // Ensure this function exists in blackjack.js
+                setupGameFunctions(); // This function is now defined in game-section.js
             }
         }
 
@@ -52,7 +50,8 @@
         loadSection('player-container', 'Sections/player-section.html');
         loadSection('game-container', 'Sections/game-section.html');
     </script>
-    <script src="blackjack.js"></script> <!-- Link to your JavaScript file -->
+    <script src="Sections/dealer-section.js"></script> <!-- Link to dealer section JavaScript -->
+    <script src="Sections/player-section.js"></script> <!-- Link to player section JavaScript -->
+    <script src="Sections/game-section.js"></script> <!-- Link to game section JavaScript -->
 </body>
-
 </html>
