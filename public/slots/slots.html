@@ -1,85 +1,137 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="slots.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200&icon_names=book_2" />
+    <meta charset="UTF-8">
     <title>Slots Game</title>
+    <link rel="stylesheet" href="slots.css">
+    <!-- Google Fonts Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
 <body>
-    <button class="rules">
+    <!-- Rules Button -->
+    <button class="rules" aria-label="View Rules">
         <span class="material-symbols-outlined">
-        book_2
+            book
         </span>
     </button>
+
+    <!-- Slot Machine Container -->
     <div class="slot-machine">
         <div class="display">
+            <!-- Reel 1 -->
             <div class="reel" id="reel1">
                 <div class="symbol">🍒</div>
                 <div class="symbol">🍋</div>
                 <div class="symbol">🍉</div>
-                <div class="symbol">🍊</div>
-                <div class="symbol">🍇</div>
-                <div class="symbol">🍓</div>
-                <div class="symbol">7️⃣</div>
-                <div class="symbol">BAR</div>
-                <div class="symbol">Double BAR</div>
-                <div class="symbol">Triple BAR</div>
-                <div class="symbol">🔔</div>
-                <div class="symbol">⭐️</div>
-                <div class="symbol">💎</div>
-                <div class="symbol">🐎</div>
-                <div class="symbol">💰</div>
             </div>
+            <!-- Reel 2 -->
             <div class="reel" id="reel2">
-                <div class="symbol">BAR</div>
+                <div class="symbol">🍒</div>
                 <div class="symbol">💰</div>
                 <div class="symbol">🍊</div>
-                <div class="symbol">🍓</div>
-                <div class="symbol">7️⃣</div>
-                <div class="symbol">💎</div>
-                <div class="symbol">🍇</div>
-                <div class="symbol">Double BAR</div>
-                <div class="symbol">🐎</div>
-                <div class="symbol">🍉</div>
-                <div class="symbol">🍒</div>
-                <div class="symbol">🔔</div>
-                <div class="symbol">⭐️</div>
-                <div class="symbol">Triple BAR</div>
-                <div class="symbol">🍋</div>
             </div>
+            <!-- Reel 3 -->
             <div class="reel" id="reel3">
                 <div class="symbol">🐎</div>
                 <div class="symbol">🔔</div>
                 <div class="symbol">🍓</div>
-                <div class="symbol">⭐️</div>
-                <div class="symbol">🍉</div>
-                <div class="symbol">💰</div>
-                <div class="symbol">🍊</div>
-                <div class="symbol">BAR</div>
-                <div class="symbol">7️⃣</div>
-                <div class="symbol">🍒</div>
-                <div class="symbol">🍋</div>
-                <div class="symbol">🍇</div>
-                <div class="symbol">Double BAR</div>
-                <div class="symbol">💎</div>
-                <div class="symbol">Triple BAR</div>
             </div>
         </div>
         <div class="controls">
             <div class="bet-amount-div">
-                <button class="bet-button">-</button>
+                <button class="bet-button" aria-label="Decrease Bet">-</button>
                 <div class="total-bet-div">
-                    <h4>Total bet</h4>
-                    <span class="bet-amount">$0</span>
+                    <h4>Total Bet</h4>
+                    <span class="bet-amount">$1</span>
                 </div>  
-                <button class="bet-button">+</button>
+                <button class="bet-button" aria-label="Increase Bet">+</button>
             </div>
             <div class="win-amount-div">
                 <div class="total-win-div">
-                    <h4>Total win</h4>
+                    <h4>Total Win</h4>
                     <span class="win-amount">$0</span>
                 </div>  
             </div>
             <button class="spin-button">SPIN</button>
+        </div>
+    </div>
+
+    <!-- Rules Modal -->
+    <div id="rules-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-button" aria-label="Close">&times;</span>
+            <h2>Game Rules</h2>
+            <p>
+                Welcome to the Slots Game! The objective is to spin the reels and match symbols to win prizes.
+            </p>
+            <ul>
+                <li>Click the <strong>SPIN</strong> button to spin the reels.</li>
+                <li>Adjust your bet amount using the "+" and "-" buttons.</li>
+                <li>If all three middle symbols match, you win according to the payout table.</li>
+                <li>Payouts vary based on the symbol and your bet amount.</li>
+            </ul>
+
+            <h3>Payout Table</h3>
+            <table class="payout-table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Payout (Multiplier)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7️⃣</td>
+                        <td>100x</td>
+                    </tr>
+                    <tr>
+                        <td>💰</td>
+                        <td>50x</td>
+                    </tr>
+                    <tr>
+                        <td>💎</td>
+                        <td>30x</td>
+                    </tr>
+                    <tr>
+                        <td>⭐️</td>
+                        <td>20x</td>
+                    </tr>
+                    <tr>
+                        <td>🔔</td>
+                        <td>10x</td>
+                    </tr>
+                    <tr>
+                        <td>🐎</td>
+                        <td>8x</td>
+                    </tr>
+                    <tr>
+                        <td>🍇</td>
+                        <td>4x</td>
+                    </tr>
+                    <tr>
+                        <td>🍉</td>
+                        <td>3x</td>
+                    </tr>
+                    <tr>
+                        <td>🍓</td>
+                        <td>2x</td>
+                    </tr>
+                    <tr>
+                        <td>🍒</td>
+                        <td>1x</td>
+                    </tr>
+                    <tr>
+                        <td>🍊</td>
+                        <td>1x</td>
+                    </tr>
+                    <tr>
+                        <td>🍋</td>
+                        <td>1x</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Good luck and have fun!</p>
         </div>
     </div>
     <script src="slots.js"></script>
