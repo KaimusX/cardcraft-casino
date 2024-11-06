@@ -11,7 +11,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    min-height: 100vh; /* Use min-height to allow for content overflow */
     font-family: Arial, Helvetica, sans-serif;
     color: #EAE0FF;
 }
@@ -51,6 +51,7 @@ body {
 
 .material-symbols-outlined {
     color: #140016;
+    font-size: 32px;
 }
 
 /* Slot Machine Container */
@@ -260,4 +261,98 @@ body {
         height: 35px;
         font-size: 1rem;
     }
+}
+
+/* Modal styles */
+.modal {
+    display: none; /* Hidden by default */
+    position: fixed; /* Stay in place */
+    z-index: 1000; /* Sit on top of other elements */
+    left: 0;
+    top: 0;
+    width: 100%; /* Full width */
+    height: 100%; /* Full height */
+    overflow: auto; /* Enable scroll if needed */
+    background-color: rgba(0,0,0,0.5); /* Black background with opacity */
+}
+
+.modal-content {
+    background-color: #fefefe;
+    margin: 10% auto; /* Centered */
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+    max-width: 600px; /* Adjust as needed */
+    border-radius: 10px;
+    color: #333;
+}
+
+.close-button {
+    color: #aaa;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+    margin-top: -10px;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #000;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Accessibility: Focus styles */
+.close-button:focus {
+    outline: 2px solid #000;
+}
+
+/* Modal Content Styles */
+.modal-content h2 {
+    margin-top: 0;
+}
+
+.modal-content h3 {
+    margin-top: 20px;
+}
+
+.modal-content p, .modal-content ul {
+    font-size: 16px;
+    line-height: 1.5;
+}
+
+.modal-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+}
+
+/* Payout Table Styles */
+.payout-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-top: 20px;
+}
+
+.payout-table th, .payout-table td {
+    border: 1px solid #ddd;
+    padding: 8px;
+    text-align: center;
+}
+
+.payout-table th {
+    background-color: #f2f2f2;
+    color: #333;
+}
+
+.payout-table tr:nth-child(even) {
+    background-color: #fafafa;
+}
+
+.payout-table tr:hover {
+    background-color: #ddd;
+}
+
+.payout-table td {
+    font-size: 1.2em;
 }

@@ -54,7 +54,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     });
 
-    // Updated spinReels function without BAR handling
+    // Spin Reels Function
     function spinReels() {
         return new Promise((resolve) => {
             let reelResults = [];
@@ -98,7 +98,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 
-    // Updated payouts without BAR entries
+    // Calculate Winnings Function
     function calculateWinnings(result) {
         const payouts = {
             '7️⃣': 100,
@@ -136,4 +136,45 @@ document.addEventListener('DOMContentLoaded', () => {
 
         return winnings;
     }
+
+    // Modal Functionality
+    // Get the modal
+    const modal = document.getElementById('rules-modal');
+
+    // Get the button that opens the modal
+    const rulesButton = document.querySelector('.rules');
+
+    // Get the <span> element that closes the modal
+    const closeButton = document.querySelector('.close-button');
+
+    // When the user clicks on the rules button, open the modal
+    rulesButton.addEventListener('click', () => {
+        modal.style.display = 'block';
+        modal.setAttribute('aria-hidden', 'false');
+        closeButton.focus(); // Move focus to close button
+    });
+
+    // Function to close the modal
+    function closeModal() {
+        modal.style.display = 'none';
+        modal.setAttribute('aria-hidden', 'true');
+        rulesButton.focus(); // Return focus to rules button
+    }
+
+    // When the user clicks on <span> (x), close the modal
+    closeButton.addEventListener('click', closeModal);
+
+    // When the user clicks anywhere outside of the modal, close it
+    window.addEventListener('click', (event) => {
+        if (event.target == modal) {
+            closeModal();
+        }
+    });
+
+    // Close modal on Escape key press
+    window.addEventListener('keydown', (event) => {
+        if (event.key === 'Escape' && modal.style.display === 'block') {
+            closeModal();
+        }
+    });
 });

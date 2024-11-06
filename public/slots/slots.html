@@ -1,16 +1,21 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-    <link rel="stylesheet" href="slots.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
+    <meta charset="UTF-8">
     <title>Slots Game</title>
+    <link rel="stylesheet" href="slots.css">
+    <!-- Google Fonts Material Symbols -->
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" />
 </head>
 <body>
+    <!-- Rules Button -->
     <button class="rules" aria-label="View Rules">
         <span class="material-symbols-outlined">
             book
         </span>
     </button>
+
+    <!-- Slot Machine Container -->
     <div class="slot-machine">
         <div class="display">
             <!-- Reel 1 -->
@@ -48,6 +53,85 @@
                 </div>  
             </div>
             <button class="spin-button">SPIN</button>
+        </div>
+    </div>
+
+    <!-- Rules Modal -->
+    <div id="rules-modal" class="modal" aria-hidden="true">
+        <div class="modal-content">
+            <span class="close-button" aria-label="Close">&times;</span>
+            <h2>Game Rules</h2>
+            <p>
+                Welcome to the Slots Game! The objective is to spin the reels and match symbols to win prizes.
+            </p>
+            <ul>
+                <li>Click the <strong>SPIN</strong> button to spin the reels.</li>
+                <li>Adjust your bet amount using the "+" and "-" buttons.</li>
+                <li>If all three middle symbols match, you win according to the payout table.</li>
+                <li>Payouts vary based on the symbol and your bet amount.</li>
+            </ul>
+
+            <h3>Payout Table</h3>
+            <table class="payout-table">
+                <thead>
+                    <tr>
+                        <th>Symbol</th>
+                        <th>Payout (Multiplier)</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>7️⃣</td>
+                        <td>100x</td>
+                    </tr>
+                    <tr>
+                        <td>💰</td>
+                        <td>50x</td>
+                    </tr>
+                    <tr>
+                        <td>💎</td>
+                        <td>30x</td>
+                    </tr>
+                    <tr>
+                        <td>⭐️</td>
+                        <td>20x</td>
+                    </tr>
+                    <tr>
+                        <td>🔔</td>
+                        <td>10x</td>
+                    </tr>
+                    <tr>
+                        <td>🐎</td>
+                        <td>8x</td>
+                    </tr>
+                    <tr>
+                        <td>🍇</td>
+                        <td>4x</td>
+                    </tr>
+                    <tr>
+                        <td>🍉</td>
+                        <td>3x</td>
+                    </tr>
+                    <tr>
+                        <td>🍓</td>
+                        <td>2x</td>
+                    </tr>
+                    <tr>
+                        <td>🍒</td>
+                        <td>1x</td>
+                    </tr>
+                    <tr>
+                        <td>🍊</td>
+                        <td>1x</td>
+                    </tr>
+                    <tr>
+                        <td>🍋</td>
+                        <td>1x</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <p>Good luck and have fun!</p>
         </div>
     </div>
     <script src="slots.js"></script>
