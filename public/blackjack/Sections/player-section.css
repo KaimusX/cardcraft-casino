@@ -1,9 +1,19 @@
-.player-header {
+.player-score-container {
+    display: flex;
+    align-items: center;  /* Vertically center the items */
+    justify-content: center;  /* Horizontally center the items */
     font-family: 'Arial', sans-serif;
+}
+
+.player-header {
+    margin-right: 10px;  /* Space between "Player" and the score */
+    font-size: 2.2rem;
     color: #ffffff;
-    font-size: 2rem; 
-    text-align: center; /* Center the text */
-    margin: 20px 0; /* Add some margin above and below */
+}
+
+#playerScore {
+    font-size: 2.2rem;
+    color: #ffffff;  /* If you want the score to be bold and white */
 }
 
 .card-container-plyr {

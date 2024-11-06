@@ -4,15 +4,18 @@ function setupGameFunctions() {
     const closeButton = document.querySelector(".close-button");
     const hitButton = document.getElementById("hit-button");
     const playerCardsContainer = document.getElementById("deckContainer");
+    const dealerCardsContainer = document.querySelector(".hand-box"); // Dealer's card container
     const playerScoreDisplay = document.getElementById("playerScore");
+    const dealerScoreDisplay = document.getElementById("dealerScore"); // Dealer's score display
     let playerScore = 0;
+    let dealerScore = 0;
     let aceCount = 0;
 
     // Define the deck of cards and image mappings
     const suits = ["spades", "hearts", "diamonds", "clubs"];
     const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
     let deck = [];
-    
+
     // Mapping each card to its image file
     function getCardImageFile(rank, suit) {
         return `${rank}_of_${suit}.png`;
@@ -70,6 +73,11 @@ function setupGameFunctions() {
         playerScoreDisplay.innerText = playerScore;
     }
 
+    // Update the dealer score display
+    function updateDealerScoreDisplay() {
+        dealerScoreDisplay.innerText = dealerScore;
+    }
+
     // Show the rules modal
     rulesButton.addEventListener("click", () => {
         rulesModal.style.display = "flex";
@@ -97,11 +105,10 @@ function setupGameFunctions() {
             adjustForAces();
             updateScoreDisplay();
 
-            // Create a new card element with an image
+            // Create a new card element with an image for the player
             const cardImg = document.createElement('img');
             cardImg.classList.add('deck-box'); // Add the deck box class for styling
             cardImg.src = `PlayingCards/${card.image}`; // No 'public/' prefix needed
-
 
             // Append the new card image to the player cards container
             playerCardsContainer.appendChild(cardImg);
@@ -110,8 +117,35 @@ function setupGameFunctions() {
         }
     });
 
+    // Functionality for the dealer to draw a card
+    function dealerDrawCard() {
+        const card = drawCard();
+        
+        if (card) {
+            // Get card value and add it to the dealer score
+            dealerScore += getCardValue(card);
+            adjustForAces(); // Adjust for aces in the dealer's hand if needed
+
+            // Create a new card element with an image for the dealer
+            const cardImg = document.createElement('img');
+            cardImg.classList.add('deck-box'); // Add the deck box class for styling
+            cardImg.src = `PlayingCards/${card.image}`; // No 'public/' prefix needed
+
+            // Append the new card image to the dealer cards container
+            dealerCardsContainer.appendChild(cardImg);
+
+            // Update the dealer score display after drawing a card
+            updateDealerScoreDisplay();
+        } else {
+            alert("No more cards in the deck!");
+        }
+    }
+
     // Initialize the deck at the start of the game
     initializeDeck();
+
+    // Example dealer drawing a card (for testing purposes, you can trigger this elsewhere in the game)
+    dealerDrawCard(); // This would simulate the dealer drawing one card initially
 }
 
 // Call the setup function when the DOM is fully loaded
