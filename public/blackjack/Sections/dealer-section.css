@@ -29,7 +29,7 @@
 }
 
 .deck-box-delr {
-    background-image: url('../Firebase/PlayingCards/card_back_black.png'); 
+    background-image: url('../PlayingCards/card_back_black.png'); 
     background-size: cover; /* Ensure the image covers the entire box */
     background-position: center; /* Center the image */
     background-repeat: no-repeat; /* Prevent the image from repeating */
@@ -38,7 +38,6 @@
     height: 180px; /* Set a fixed height for the boxes to make them card-shaped */
     border-radius: 8px; /* Rounded corners for a nicer look */
 }
-
 
 
 .hand-box {
