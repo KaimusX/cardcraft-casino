@@ -3,12 +3,76 @@ function setupGameFunctions() {
     const rulesModal = document.getElementById("rulesModal");
     const closeButton = document.querySelector(".close-button");
     const hitButton = document.getElementById("hit-button");
-    const playerCardsContainer = document.getElementById("deckContainer"); // Reference to the player cards container
-    let cardCount = 0; // Counter for the number of cards added
+    const playerCardsContainer = document.getElementById("deckContainer");
+    const playerScoreDisplay = document.getElementById("playerScore");
+    let playerScore = 0;
+    let aceCount = 0;
+
+    // Define the deck of cards and image mappings
+    const suits = ["spades", "hearts", "diamonds", "clubs"];
+    const ranks = ["2", "3", "4", "5", "6", "7", "8", "9", "10", "jack", "queen", "king", "ace"];
+    let deck = [];
+    
+    // Mapping each card to its image file
+    function getCardImageFile(rank, suit) {
+        return `${rank}_of_${suit}.png`;
+    }
+
+    // Initialize and shuffle the deck
+    function initializeDeck() {
+        deck = [];
+        suits.forEach(suit => {
+            ranks.forEach(rank => {
+                const displayRank = rank[0].toUpperCase() + rank.slice(1); // Capitalize rank for display
+                const card = { rank: displayRank, suit, image: getCardImageFile(rank, suit) };
+                deck.push(card);
+            });
+        });
+        deck = shuffleDeck(deck);
+    }
+
+    // Shuffle the deck using Fisher-Yates algorithm
+    function shuffleDeck(deck) {
+        for (let i = deck.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [deck[i], deck[j]] = [deck[j], deck[i]];
+        }
+        return deck;
+    }
+
+    // Draw a card from the deck
+    function drawCard() {
+        return deck.length > 0 ? deck.pop() : null;
+    }
+
+    // Calculate card value based on Blackjack rules
+    function getCardValue(card) {
+        if (["jack", "queen", "king"].includes(card.rank.toLowerCase())) {
+            return 10;
+        } else if (card.rank.toLowerCase() === "ace") {
+            aceCount++;
+            return 11; // Aces initially count as 11
+        } else {
+            return parseInt(card.rank);
+        }
+    }
+
+    // Adjust for Aces in the score
+    function adjustForAces() {
+        while (playerScore > 21 && aceCount > 0) {
+            playerScore -= 10; // Make an Ace count as 1 instead of 11
+            aceCount--;
+        }
+    }
+
+    // Update the score display
+    function updateScoreDisplay() {
+        playerScoreDisplay.innerText = playerScore;
+    }
 
     // Show the rules modal
     rulesButton.addEventListener("click", () => {
-        rulesModal.style.display = "flex"; // Display as flex to center content
+        rulesModal.style.display = "flex";
     });
 
     // Hide the modal when the close button is clicked
@@ -25,16 +89,29 @@ function setupGameFunctions() {
 
     // Functionality for the Hit button
     hitButton.addEventListener("click", () => {
-        cardCount++; // Increment the card count
+        const card = drawCard();
 
-        // Create a new card element
-        const newCard = document.createElement('div');
-        newCard.classList.add('deck-box'); // Add the deck box class
-        //newCard.innerText = `Card ${cardCount}`; // Example text for the card
+        if (card) {
+            // Get card value and add it to the player score
+            playerScore += getCardValue(card);
+            adjustForAces();
+            updateScoreDisplay();
 
-        // Append the new card to the player cards container
-        playerCardsContainer.appendChild(newCard);
+            // Create a new card element with an image
+            const cardImg = document.createElement('img');
+            cardImg.classList.add('deck-box'); // Add the deck box class for styling
+            cardImg.src = `PlayingCards/${card.image}`; // No 'public/' prefix needed
+
+
+            // Append the new card image to the player cards container
+            playerCardsContainer.appendChild(cardImg);
+        } else {
+            alert("No more cards in the deck!");
+        }
     });
+
+    // Initialize the deck at the start of the game
+    initializeDeck();
 }
 
 // Call the setup function when the DOM is fully loaded
