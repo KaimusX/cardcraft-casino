@@ -5,4 +5,5 @@
 - Luis Franco
 - Karina Rivera
 - Antonio Urbina
+- Christian Rodriguez 
 - Akinyemi Akinjayeju
