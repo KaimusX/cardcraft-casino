@@ -29,5 +29,13 @@ function setBet() {
     betInput.value = '';  // Clear the input after placing the bet (optional)
 }
 
+// Reset the player bet and balance to defaults
+function resetPlayerState() {
+    currentBet = 0;  // Reset the current bet
+    playerBalance = 100;  // Reset the player's balance back to 100
+    document.getElementById("currentBet").textContent = `$${currentBet}`;  // Update the displayed bet
+    document.getElementById("playerBalance").textContent = `$${playerBalance}`;  // Update the displayed balance
+}
+
 // Initialize player functions when the page is ready
 setupPlayerFunctions();

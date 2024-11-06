@@ -4,6 +4,7 @@ function setupGameFunctions() {
     const closeButton = document.querySelector(".close-button");
     const hitButton = document.getElementById("hit-button");
     const resetButton = document.getElementById("reset-button"); // Reset button
+    const standButton = document.getElementById("stand-button"); // Stand button
     const playerCardsContainer = document.getElementById("deckContainer");
     const dealerCardsContainer = document.querySelector(".hand-box"); // Dealer's card container
     const playerScoreDisplay = document.getElementById("playerScore");
@@ -11,6 +12,7 @@ function setupGameFunctions() {
     let playerScore = 0;
     let dealerScore = 0;
     let aceCount = 0;
+    let gameInProgress = false; // Track if the game is in progress or not
 
     // Define the deck of cards and image mappings
     const suits = ["spades", "hearts", "diamonds", "clubs"];
@@ -79,6 +81,14 @@ function setupGameFunctions() {
         dealerScoreDisplay.innerText = dealerScore;
     }
 
+    // Reset the player bet and balance to defaults (called from player-section.js)
+    function resetPlayerState() {
+        currentBet = 0;  // Reset the current bet
+        playerBalance = 100;  // Reset the player's balance back to 100
+        document.getElementById("currentBet").textContent = `$${currentBet}`;  // Update the displayed bet
+        document.getElementById("playerBalance").textContent = `$${playerBalance}`;  // Update the displayed balance
+    }
+
     // Reset the game (clear cards, reset scores, and reinitialize the deck)
     function resetGame() {
         // Clear player and dealer cards
@@ -97,34 +107,50 @@ function setupGameFunctions() {
         // Re-initialize the deck
         initializeDeck();
 
-        // Optionally, deal one card to the dealer (or more depending on your game's rules)
-        dealerDrawCard(); // Ensure the dealer draws a card after resetting the game
+        // Reset player bet and balance
+        resetPlayerState();  // Reset bet and balance to defaults
+
+        // Disable the hit button until a bet is placed
+        hitButton.disabled = true;
+
+        // Show the bet box again (if hidden)
+        document.getElementById("betInput").style.display = 'block';
+        document.querySelector("button").style.display = 'block';
+
+        // Create a placeholder card (white card) for dealer, with the same deck-box class
+        const placeholderCard = document.createElement('div');
+        placeholderCard.classList.add('deck-box'); // Use the same class as the actual cards
+        dealerCardsContainer.appendChild(placeholderCard);
+
+        gameInProgress = false; // Reset game status
     }
 
     // Functionality for the Hit button
     hitButton.addEventListener("click", () => {
-        const card = drawCard();
+        if (currentBet > 0) { // Only allow the hit action if a bet has been placed
+            const card = drawCard();
 
-        if (card) {
-            // Get card value and add it to the player score
-            playerScore += getCardValue(card);
-            adjustForAces();
-            updateScoreDisplay();
+            if (card) {
+                // Get card value and add it to the player score
+                playerScore += getCardValue(card);
+                adjustForAces();
+                updateScoreDisplay();
 
-            // Create a new card element with an image for the player
-            const cardImg = document.createElement('img');
-            cardImg.classList.add('deck-box'); // Add the deck box class for styling
-            cardImg.src = `PlayingCards/${card.image}`; // No 'public/' prefix needed
+                // Create a new card element with an image for the player
+                const cardImg = document.createElement('img');
+                cardImg.classList.add('deck-box'); // Add the deck box class for styling
+                cardImg.src = `PlayingCards/${card.image}`; // No 'public/' prefix needed
 
-            // Append the new card image to the player cards container
-            playerCardsContainer.appendChild(cardImg);
-        } else {
-            alert("No more cards in the deck!");
+                // Append the new card image to the player cards container
+                playerCardsContainer.appendChild(cardImg);
+            } else {
+                alert("No more cards in the deck!");
+            }
         }
     });
 
     // Functionality for the dealer to draw a card
-    function dealerDrawCard() {
+    function dealerDrawCard(revealCard = true) {
         const card = drawCard();
         
         if (card) {
@@ -135,7 +161,14 @@ function setupGameFunctions() {
             // Create a new card element with an image for the dealer
             const cardImg = document.createElement('img');
             cardImg.classList.add('deck-box'); // Add the deck box class for styling
-            cardImg.src = `PlayingCards/${card.image}`; // No 'public/' prefix needed
+            
+            if (revealCard) {
+                // Show the real card image if the bet is placed
+                cardImg.src = `PlayingCards/${card.image}`;
+            } else {
+                // Initially show a white placeholder card
+                cardImg.src = "PlayingCards/placeholder.png"; // Placeholder image (create a simple white card image)
+            }
 
             // Append the new card image to the dealer cards container
             dealerCardsContainer.appendChild(cardImg);
@@ -147,9 +180,41 @@ function setupGameFunctions() {
         }
     }
 
-    // Reset the game when the reset button is clicked
+    // Handle the reset button click
     resetButton.addEventListener("click", () => {
         resetGame();
+    });
+
+    // Handle the stand button click
+    standButton.addEventListener("click", () => {
+        if (gameInProgress) {
+            // Disable the hit button after player stands
+            hitButton.disabled = true;
+
+            // Reveal dealer's card
+            dealerDrawCard(true);
+
+            // Dealer's turn: Keep drawing until the dealer's score is 17 or higher
+            while (dealerScore < 17) {
+                dealerDrawCard(true);
+            }
+
+            // Check the winner (basic check)
+            if (playerScore > 21) {
+                alert("You busted! Dealer wins!");
+            } else if (dealerScore > 21) {
+                alert("Dealer busted! You win!");
+            } else if (playerScore > dealerScore) {
+                alert("You win!");
+            } else if (playerScore < dealerScore) {
+                alert("Dealer wins!");
+            } else {
+                alert("It's a tie!");
+            }
+
+            // End the game
+            resetGame();
+        }
     });
 
     // Show the rules modal
@@ -172,9 +237,20 @@ function setupGameFunctions() {
     // Initialize the deck at the start of the game
     initializeDeck();
 
-    // Only deal cards when the game is reset
-    // You can add the first card to the dealer hand here, or have the dealer deal on their turn
-    dealerDrawCard(); // This would simulate the dealer drawing one card initially
+    // Disable the hit button until a bet is placed
+    hitButton.disabled = true;
+
+    // Listen for a bet placement from player-section.js
+    document.querySelector("button").addEventListener("click", () => {
+        if (currentBet > 0) {
+            // Enable the hit button when a valid bet is placed
+            hitButton.disabled = false;
+
+            // Reveal the dealer's card once the bet is placed
+            dealerDrawCard(false); // Initially show the placeholder card for dealer
+            gameInProgress = true; // Mark the game as in progress
+        }
+    });
 }
 
 // Call the setup function when the DOM is fully loaded
