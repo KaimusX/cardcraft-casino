@@ -213,7 +213,7 @@ function setupGameFunctions() {
             }
 
             // End the game
-            resetGame();
+            gameInProgress = false;
         }
     });
 
