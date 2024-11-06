@@ -1,3 +1,44 @@
+/* Container for centering and spacing */
+.bet-container {
+    max-width: 400px;
+    padding: 20px;
+    text-align: center;
+    border-radius: 8px;
+}
+
+/* Input field styling */
+.bet-input {
+    padding: 10px;
+    font-size: 16px;
+    margin-bottom: 15px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+}
+
+.bet-input:focus {
+    border-color: #4CAF50;
+    outline: none;
+}
+
+/* Button styling */
+.bet-button {
+    padding: 10px 20px;
+    font-size: 16px;
+    color: white;
+    background-color: #4CAF50;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+
+}
+
+.bet-button:hover {
+    background-color: #45a049;
+}
+
+
+
+
 .game-container {
     display: flex;
     flex-direction: column; /* Stack rows vertically */
@@ -162,6 +203,7 @@
 .label {
     font-weight: bold;
     font-size: 1.8rem;
+    font-family: 'Arial', sans-serif;
 }
 
 .bet-amount, .balance-amount {
