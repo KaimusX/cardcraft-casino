@@ -3,18 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dealer Header</title>
+    <title>Dealer Section</title>
+    <link rel="stylesheet" href="dealer-section.css"> <!-- Make sure to link your CSS -->
 </head>
 <body>
-    <h2 class="dealer-header">Dealer 🤵</h2>
+    <div class="dealer-score-container">
+        <h2 class="dealer-header">Dealer - Hand</h2>
+        <h2><span id="dealerScore">0</span></h2>
+    </div> 
     <div class="card-container">
         <div class="deck-container">
-            <div class="deck-box-delr"></div>
+            <div class="deck-box-delr"></div> <!-- Placeholder for the dealer's hidden card -->
         </div>
         <div class="hand-container">
-            <div class="hand-box"></div>
+            <div class="hand-box"></div> <!-- This is where dealer's drawn cards will appear -->
         </div>
-        <h3> Count : </h3>
+     <!-- Dealer's score will be updated here -->
     </div>
 </body>
 </html>

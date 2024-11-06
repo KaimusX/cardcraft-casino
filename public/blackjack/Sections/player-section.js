@@ -1,17 +1,41 @@
+let currentBet = 0;
+let playerBalance = 100;  // Example starting balance
+
 function setupPlayerFunctions() {
-    const deckContainer = document.getElementById('deckContainer');
-    const addCardButton = document.getElementById('addCardButton');
-    
-    let cardCount = 0; // To keep track of the number of cards
-    
-    addCardButton.addEventListener('click', () => {
-        cardCount++; // Increment card count
-    
-        // Create a new card element
-        const newCard = document.createElement('div');
-        newCard.classList.add('deck-box'); // Add the deck box class
-    
-        // Append the new card to the deck container
-        deckContainer.appendChild(newCard);
-    });
+    document.querySelector("button").addEventListener("click", setBet);
 }
+
+function setBet() {
+    const betInput = document.getElementById("betInput");
+    const betValue = parseInt(betInput.value) || 0;  // Get the bet value from the input field
+    const balance = playerBalance;
+
+    if (betValue > 0 && betValue <= balance) {
+        currentBet = betValue;  // Update the bet
+        playerBalance -= betValue;  // Deduct bet from player's balance
+        document.getElementById("currentBet").textContent = `$${currentBet}`;  // Display the updated bet
+        document.getElementById("playerBalance").textContent = `$${playerBalance}`;  // Update the balance
+        console.log(`Bet placed: ${currentBet}`);
+
+        // Hide the input and button after the bet is placed
+        betInput.style.display = 'none';
+        document.querySelector("button").style.display = 'none';
+    } else if (betValue > balance) {
+        alert("Insufficient balance. Please enter a smaller bet.");
+    } else {
+        alert("Please enter a valid bet.");
+    }
+
+    betInput.value = '';  // Clear the input after placing the bet (optional)
+}
+
+// Reset the player bet and balance to defaults
+function resetPlayerState() {
+    currentBet = 0;  // Reset the current bet
+    playerBalance = 100;  // Reset the player's balance back to 100
+    document.getElementById("currentBet").textContent = `$${currentBet}`;  // Update the displayed bet
+    document.getElementById("playerBalance").textContent = `$${playerBalance}`;  // Update the displayed balance
+}
+
+// Initialize player functions when the page is ready
+setupPlayerFunctions();

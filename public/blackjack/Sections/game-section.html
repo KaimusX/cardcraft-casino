@@ -18,8 +18,12 @@
                         <circle cx="12" cy="12" r="5" fill="white"/>
                     </svg>
                 </span>
-                <span class="label">Bet:</span>
-                <span class="bet-amount">$0</span>
+                <div class="bet-container">
+                    <input type="number" id="betInput" placeholder="Enter Bet Amount" class="bet-input">
+                    <button onclick="setBet()" class="bet-button">Place Bet</button>
+                    <p class="label">Current Bet: <span id="currentBet">$0</span></p>
+                </div>
+                
             </div>
             <div class="balance-display">
                 <span class="icon multiple-chips">
@@ -29,10 +33,11 @@
                         <circle cx="18" cy="18" r="8" stroke="black" stroke-width="2" fill="black"/>
                     </svg>
                 </span>
-                <span class="label">Balance:</span>
-                <span class="balance-amount">$0</span>
+                <span class="label">Balance: </span>
+                <span id="playerBalance" class="label">$100</span> <!-- Example starting balance -->
             </div>
         </div>
+        
         <div class="game-row button-container">
             <div class="button-row">
                 <button id="hit-button" class="game-action-button">Hit</button>
@@ -40,7 +45,7 @@
             </div>
             <div class="button-row">
                 <button id="stand-button" class="game-action-button">Stand</button>
-                <button id="split-button" class="game-action-button">Split</button>
+                <button id="reset-button" class="game-action-button">Reset</button>
             </div>
         </div>
         <div class="game-row">
