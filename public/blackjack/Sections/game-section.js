@@ -3,6 +3,7 @@ function setupGameFunctions() {
     const rulesModal = document.getElementById("rulesModal");
     const closeButton = document.querySelector(".close-button");
     const hitButton = document.getElementById("hit-button");
+    const resetButton = document.getElementById("reset-button"); // Reset button
     const playerCardsContainer = document.getElementById("deckContainer");
     const dealerCardsContainer = document.querySelector(".hand-box"); // Dealer's card container
     const playerScoreDisplay = document.getElementById("playerScore");
@@ -78,22 +79,27 @@ function setupGameFunctions() {
         dealerScoreDisplay.innerText = dealerScore;
     }
 
-    // Show the rules modal
-    rulesButton.addEventListener("click", () => {
-        rulesModal.style.display = "flex";
-    });
+    // Reset the game (clear cards, reset scores, and reinitialize the deck)
+    function resetGame() {
+        // Clear player and dealer cards
+        playerCardsContainer.innerHTML = '';
+        dealerCardsContainer.innerHTML = '';
 
-    // Hide the modal when the close button is clicked
-    closeButton.addEventListener("click", () => {
-        rulesModal.style.display = "none";
-    });
+        // Reset player and dealer scores
+        playerScore = 0;
+        dealerScore = 0;
+        aceCount = 0;
 
-    // Hide the modal when clicking outside of the modal content
-    window.addEventListener("click", (event) => {
-        if (event.target === rulesModal) {
-            rulesModal.style.display = "none";
-        }
-    });
+        // Reset score displays
+        updateScoreDisplay();
+        updateDealerScoreDisplay();
+
+        // Re-initialize the deck
+        initializeDeck();
+
+        // Optionally, deal one card to the dealer (or more depending on your game's rules)
+        dealerDrawCard(); // Ensure the dealer draws a card after resetting the game
+    }
 
     // Functionality for the Hit button
     hitButton.addEventListener("click", () => {
@@ -141,10 +147,33 @@ function setupGameFunctions() {
         }
     }
 
+    // Reset the game when the reset button is clicked
+    resetButton.addEventListener("click", () => {
+        resetGame();
+    });
+
+    // Show the rules modal
+    rulesButton.addEventListener("click", () => {
+        rulesModal.style.display = "flex";
+    });
+
+    // Hide the modal when the close button is clicked
+    closeButton.addEventListener("click", () => {
+        rulesModal.style.display = "none";
+    });
+
+    // Hide the modal when clicking outside of the modal content
+    window.addEventListener("click", (event) => {
+        if (event.target === rulesModal) {
+            rulesModal.style.display = "none";
+        }
+    });
+
     // Initialize the deck at the start of the game
     initializeDeck();
 
-    // Example dealer drawing a card (for testing purposes, you can trigger this elsewhere in the game)
+    // Only deal cards when the game is reset
+    // You can add the first card to the dealer hand here, or have the dealer deal on their turn
     dealerDrawCard(); // This would simulate the dealer drawing one card initially
 }
 
