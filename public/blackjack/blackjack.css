@@ -10,9 +10,8 @@ body {
 /* Blackjack Table Sections*/
 .blackjack-table {
     width: 98%;
-    max-width: 1200px; /* Optional max width for larger screens */
     display: flex; /* Use flexbox for layout */
-    height: calc(100% - 60px); /* Adjust for the title */
+    height: calc(100% - 50px); /* Adjust for the title */
     background-color: #35654d; /* Darker green for the table */
     /*border: 10px solid white; Dark border */
     border-radius: 15px; /* Rounded corners */
@@ -24,6 +23,7 @@ body {
     flex-direction: column; /* Stack sections vertically */
     width: 60%; /* Take up half of the table's width */
     padding: 5px;
+    border: solid red;
 
 }
 
@@ -33,24 +33,26 @@ body {
     /* border: 2px solid #050505; Separator for sections */
     padding: 5px; /* Padding inside each section */
     box-sizing: border-box; /* Ensure padding doesn't affect width */
+    border: solid blue;
 }
 
 .game-section {
     flex: 1; /* Take up the full height */
     padding: 10px;
     /* border-left: 2px solid #050505; Left separator */
+    border: solid yellow;
 }
 
-h1 {
+.title-blackjack {
     font-family: 'Arial Black', sans-serif;
     font-size: 4rem;
     background: linear-gradient(45deg, #ffffff, #6d6868); /* Gradient from white to black */
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent; /* Makes the gradient apply only to text */
     text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    margin: 20px 0;
+    margin: 2px;
     text-align: center;
-    animation: flicker 1.5s infinite;
+    border: solid orange;
 }
 
 @keyframes flicker {
@@ -62,17 +64,18 @@ h1 {
     }
 }
 
-.title-container {
+/* .title-container {
     text-align: center;
     margin-bottom: 20px;
-}
-
+} */
+/*
 .dealer-cards, .player-cards {
     display: flex;
-    gap: 5px; /* Space between cards */
+    gap: 5px; 
     margin-top: 10px;
+    border: orchid solid;
 }
-
+*/
 /* Card styling */
 .card {
     width: 10vw;
