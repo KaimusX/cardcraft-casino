@@ -83,6 +83,10 @@
                     <span class="game-name">Slots</span>
                 </div>
             </div>
+            <div class="game-card leaderboard" onclick="window.location.href='./leaderboard/leaderboard.html'">
+              <span class="game-icon">🏆</span>
+              <span class="game-name">Leaderboard</span>
+            </div>
             `;
 
     } else {

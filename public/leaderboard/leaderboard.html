@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leaderboard</title>
+    <link rel="stylesheet" href="leaderboard.css">
+</head>
+<body>
+    <header>
+        <h1>🏆 Leaderboard</h1>
+    </header>
+    <main>
+        <div class="leaderboard-header">
+            <span class="header-rank">Rank</span>
+            <span class="header-user">User</span>
+            <span class="header-score">Score</span>
+        </div>
+        
+        <div class="leaderboard-container">
+            <table class="leaderboard-table">
+                <tbody id="leaderboard-rows">
+                    <!-- Rows will be dynamically populated here -->
+                </tbody>
+            </table>
+        </div>
+    </main>
+    
+    
+    <footer>
+        <button onclick="window.location.href='../index.html'" class="btn">Back to Home</button>
+    </footer>
+    <script type="module" src="leaderboard.js"></script>
+</body>
+</html>

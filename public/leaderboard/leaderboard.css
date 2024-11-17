@@ -1,0 +1,120 @@
+/* General styles */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #2b2b2b;
+    color: #ffffff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+header h1 {
+    margin-top: 2rem;
+    font-size: 2.5rem;
+    color: #ffcc00;
+    text-shadow: 2px 2px #000;
+    text-align: center;
+}
+
+main {
+    flex: 1;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 1rem;
+}
+
+/* Fixed Header Labels */
+.leaderboard-header {
+    display: flex;
+    justify-content: space-between;
+    background-color: #444;
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #ffcc00;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 800px;
+    margin-bottom: 10px; /* Add space between the header and the scrollable section */
+}
+
+.leaderboard-header span {
+    flex: 1;
+    text-align: center;
+}
+
+/* Scrollable Table Container */
+.leaderboard-container {
+    width: 80%;
+    max-width: 800px;
+    background-color: #333;
+    border-radius: 10px;
+    padding: 0; /* No padding inside the scrollable container */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    max-height: 500px; /* Limit height for scrolling */
+    overflow-y: auto; /* Enable vertical scrolling for rows */
+    border: 2px solid #444; /* Optional: Add border for separation */
+}
+
+/* Leaderboard Table */
+table.leaderboard-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+table.leaderboard-table td {
+    text-align: center;
+    padding: 1rem;
+    border: 1px solid #555;
+    background-color: #555;
+    color: #ffffff;
+    height: 50px; /* Consistent row height */
+}
+
+/* Optional: Hover effect for rows */
+table.leaderboard-table tbody tr:hover {
+    background-color: #666;
+    cursor: default;
+}
+
+/* Scrollbar Styling */
+.leaderboard-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+.leaderboard-container::-webkit-scrollbar-thumb {
+    background: #888;
+    border-radius: 4px;
+}
+
+.leaderboard-container::-webkit-scrollbar-thumb:hover {
+    background: #555;
+}
+
+/* Back to Home Button */
+footer .btn {
+    margin: 2rem;
+    padding: 1rem 2rem;
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+footer .btn:hover {
+    background-color: #ff7733;
+    transform: scale(1.05);
+}
+
+footer .btn:active {
+    background-color: #cc2900;
+}
