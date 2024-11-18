@@ -1,24 +1,40 @@
 <!DOCTYPE html>
-<html>
+<html lang="eng">
 <head>
     <title>Mines</title>
     <link rel="stylesheet" type="text/css" href="mines.css">
 </head>
 <body>
-    <h1>Mines</h1>
-    <div>
-        <label for="selection">Board Size: <input id="boardSize" type="number" value="10"></label><br><br>
-        <label for="selection">Mines: <input id="mineCount" type="number" value="10"></label><br><br>
-        <label for="selection"> Initial Balance: <input id="initialBalance" type="number" value="100"></label><br><br>
-        <button onclick="startGame()">Start Game</button>
-        <button onclick="quitGame()">Quit Game</button>
+<h1>Mines</h1>
+<div id="main-container">
+    <div id="settings-container">
+        <h2>Game Settings</h2>
+        <div class="setting-item">
+            <label for="boardSize">Board Size</label>
+            <input id="boardSize" type="number" value="10" min="5" max="20">
+        </div>
+        <div class="setting-item">
+            <label for="mineCount">Mines</label>
+            <input id="mineCount" type="number" value="10" min="1" max="50">
+        </div>
+        <div class="setting-item">
+            <label for="initialBalance">Initial Balance</label>
+            <input id="initialBalance" type="number" value="100" min="10" max="1000">
+        </div>
+        <div class="button-group">
+            <button onclick="startGame()" class="btn">Start Game</button>
+            <button onclick="quitGame()" class="btn">Quit Game</button>
+        </div>
     </div>
     <div id="game-container">
         <div id="game"></div>
+    </div>
+    <div id="balance-reward-container">
         <div id="balance">Current Balance: $0.00</div>
         <div id="reward">Next Click Reward: $0.00</div>
     </div>
-    <script src="mines.js"></script>
+</div>
+<script src="mines.js"></script>
 </body>
 </html>
 
