@@ -3,14 +3,15 @@
     display: flex;
     align-items: center;
     font-family: Arial, sans-serif;
+    gap: 10px;
 }
 
 .dealer-header {
-    font-size: 2.5rem; /* Slightly larger for better emphasis */
+    font-size: 2.2rem; /* Slightly larger for better emphasis */
 }
 
 #dealerScore {
-    font-size: 2.5rem;
+    font-size: 2.2rem;
     font-weight: bold;
 }
 
