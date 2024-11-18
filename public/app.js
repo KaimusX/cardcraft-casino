@@ -8,6 +8,8 @@
     signInWithPopup,
     GoogleAuthProvider,
     onAuthStateChanged,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
   } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
   import {
@@ -45,6 +47,12 @@
   const signInButton = document.getElementById('signInBtn');
   const signOutButton = document.getElementById('signOutBtn');
 
+  const registerBtn = document.getElementById('registerBtn');
+  const emailSignInBtn = document.getElementById('emailSignInBtn');
+  const emailInput = document.getElementById('emailInput');
+  const passwordInput = document.getElementById('passwordInput');
+  const emailSignInDiv = document.getElementById('emailSignIn');
+
   const userDetails = document.getElementById('userDetails');
 
   if(signInButton && signOutButton && whenSignedIn && whenSignedOut) {
@@ -57,6 +65,34 @@
   };
 
   signOutButton.onclick = () => auth.signOut();
+
+  registerBtn.onclick = () => {
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    const auth = getAuth();
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log('User registered:', userCredential.user);
+      })
+      .catch((error) => {
+        console.error('Error registering user:', error.message);
+        alert(error.message);
+      });
+  };
+
+  emailSignInBtn.onclick = () => {
+    const auth = getAuth();
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log('User signed in:', userCredential.user);
+      })
+      .catch((error) => {
+        console.error('Error signing in:', error.message);
+        alert(error.message);
+      });
+  };
 
   onAuthStateChanged(auth, async (user) => {
     if (user) {
