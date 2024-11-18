@@ -3,9 +3,11 @@ import { Board } from './board.js';
 class Mines {
     constructor(size, mines, initialBalance) {
         this.board = new Board(size, mines);
+        this.diamonds = 1;
         this.balance = initialBalance;
         this.minesHit = false;
         this.updateBalance();
+        this.placeDiamonds();
         this.renderBoard();
     }
 
@@ -35,8 +37,9 @@ class Mines {
         }
     }
 
-    updateBalance() {
-        this.balance *= this.winMultiplier();
+    updateBalance(diamondHit = false) {
+        if(diamondHit)  this.balance *= this.winMultiplier() * 3;
+        else this.balance *= this.winMultiplier();
         let balanceDiv = document.getElementById("balance");
         balanceDiv.innerHTML = `Current Balance: $${this.balance.toFixed(2)}`;
         this.updateReward();
@@ -51,8 +54,15 @@ class Mines {
             for (let j = 0; j < this.board.size; j++) {
                 let cell = document.createElement("td");
                 if (this.board.revealed[i][j]) {
-                    cell.classList.add(this.board.isMine(i, j) ? "mine" : "revealed");
-                    cell.innerHTML = this.board.isMine(i, j) ? "M" : "";
+                    if (this.board.isMine(i, j)) {
+                        cell.classList.add("mine");
+                    }
+                    else if (this.board.isDiamond(i, j)) {
+                        cell.classList.add("diamond");
+                    }
+                    else {
+                        cell.classList.add("revealed");
+                    }
                 }
                 cell.addEventListener("click", () => this.revealCell(i, j));
                 row.appendChild(cell);
