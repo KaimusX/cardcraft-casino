@@ -96,36 +96,39 @@ function setupGameFunctions() {
         // Clear player and dealer cards
         playerCardsContainer.innerHTML = '';
         dealerCardsContainer.innerHTML = '';
-
+    
         // Reset player and dealer scores
         playerScore = 0;
         dealerScore = 0;
         aceCount = 0;
-
+    
         // Reset score displays
         updateScoreDisplay();
         updateDealerScoreDisplay();
-
+    
         // Re-initialize the deck
         initializeDeck();
-
+    
         // Reset player bet and balance
-        resetPlayerState();  // Reset bet and balance to defaults
-
+        resetPlayerState(); // Ensure bet and balance reset
+    
+        // Show the bet input and Place Bet button
+        const betInput = document.getElementById("betInput");
+        const betButton = document.querySelector(".bet-button");
+        betInput.style.display = 'block'; // Make input visible
+        betButton.style.display = 'block'; // Make button visible
+    
         // Disable the hit button until a bet is placed
         hitButton.disabled = true;
-
-        // Show the bet box again (if hidden)
-        document.getElementById("betInput").style.display = 'block';
-        document.querySelector("button").style.display = 'block';
-
-        // Create a placeholder card (white card) for dealer, with the same deck-box class
+    
+        // Create a placeholder card for the dealer
         const placeholderCard = document.createElement('div');
-        placeholderCard.classList.add('deck-box'); // Use the same class as the actual cards
-        dealerCardsContainer.appendChild(placeholderCard);
 
+        dealerCardsContainer.appendChild(placeholderCard);
+    
         gameInProgress = false; // Reset game status
     }
+    
 
     // Functionality for the Hit button
     hitButton.addEventListener("click", () => {
@@ -169,7 +172,7 @@ function setupGameFunctions() {
                 cardImg.src = `PlayingCards/${card.image}`;
             } else {
                 // Initially show a white placeholder card
-                cardImg.src = "PlayingCards/placeholder.png"; // Placeholder image (create a simple white card image)
+                cardImg.src = `PlayingCards/${card.image}`; // Placeholder image (create a simple white card image)
             }
 
             // Append the new card image to the dealer cards container
