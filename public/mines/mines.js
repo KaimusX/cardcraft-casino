@@ -3,16 +3,17 @@ class Mines {
     constructor(size, mines, initialBalance) {
         this.size = size;
         this.mines = mines;
+        this.diamonds = 1;
         this.balance = initialBalance;
         this.board = this.createBoard();
         this.revealed = this.createRevealed();
         this.minesHit = false;
-        this.updateBalance();  
+        this.updateBalance();
         this.placeMines();
+        this.placeDiamonds()
         this.renderBoard();
         this.updateReward();
     }
-
     createBoard() {
         let board = [];
         for (let i = 0; i < this.size; i++) {
@@ -40,15 +41,33 @@ class Mines {
         while (placedMines < this.mines) {
             let row = Math.floor(Math.random() * this.size);
             let col = Math.floor(Math.random() * this.size);
-            if (this.board[row][col] !== 'M') {
+            if (this.board[row][col] !== 'M' && this.board[row][col] !== 'D') {
                 this.board[row][col] = 'M';
                 placedMines++;
             }
         }
     }
 
+    placeDiamonds() {
+        let increase = Math.floor(this.mines / 5);
+        this.diamonds += increase;
+        let placedDiamonds = 0;
+        while (placedDiamonds < this.diamonds) {
+            let row = Math.floor(Math.random() * this.size);
+            let col = Math.floor(Math.random() * this.size);
+            if (this.board[row][col] !== 'M' && this.board[row][col] !== 'D') {
+                this.board[row][col] = 'D';
+                placedDiamonds++;
+            }
+        }
+    }
+
     isMine(row, col) {
         return this.board[row][col] === 'M';
+    }
+
+    isDiamond(row, col) {
+        return this.board[row][col] === 'D';
     }
 
     revealCell(row, col) {
@@ -66,9 +85,18 @@ class Mines {
             this.revealAll();
             return true;
         }
+
+        if (this.isDiamond(row, col)) {
+            this.revealed[row][col] = true;
+            this.board[row][col] = 'D';
+            this.updateBalance(true);
+            this.renderBoard();
+            this.updateReward();
+            return true;
+        }
         this.revealed[row][col] = true;
         this.board[row][col] = 'R';
-        this.updateBalance();  
+        this.updateBalance();
         this.renderBoard();
         this.updateReward();
         return true;
@@ -87,7 +115,7 @@ class Mines {
         let revealedCells = this.revealed.flat().filter(cell => cell).length;
         let mineRatio = this.mines / (this.size * this.size);
         if (mineRatio <= 0.1) {
-            return 1 + (revealedCells / (this.size * this.size)) * 4; 
+            return 1 + (revealedCells / (this.size * this.size)) * 4;
         } else if (mineRatio <= 0.2) {
             return 1 + (revealedCells / (this.size * this.size)) * 7;
         } else {
@@ -95,8 +123,9 @@ class Mines {
         }
     }
 
-    updateBalance() {
-        this.balance *= this.winMultiplier();
+    updateBalance(diamondHit = false) {
+        if(diamondHit)  this.balance *= this.winMultiplier() * 3;
+        else this.balance *= this.winMultiplier();
         let balanceDiv = document.getElementById("balance");
         balanceDiv.innerHTML = `Current Balance: $${this.balance.toFixed(2)}`;
         this.updateReward();
@@ -112,7 +141,6 @@ class Mines {
         }
         return true;
     }
-
     renderBoard() {
         let gameDiv = document.getElementById("game");
         gameDiv.innerHTML = "";
@@ -122,8 +150,15 @@ class Mines {
             for (let j = 0; j < this.size; j++) {
                 let cell = document.createElement("td");
                 if (this.revealed[i][j]) {
-                    cell.classList.add(this.isMine(i, j) ? "mine" : "revealed");
-                    cell.innerHTML = this.isMine(i, j) ? "M" : "";
+                    if (this.isMine(i, j)) {
+                        cell.classList.add("mine");
+                    }
+                    else if (this.isDiamond(i, j)) {
+                        cell.classList.add("diamond");
+                    }
+                    else {
+                        cell.classList.add("revealed");
+                    }
                 }
                 cell.addEventListener("click", () => this.revealCell(i, j));
                 row.appendChild(cell);
@@ -138,7 +173,6 @@ class Mines {
         let rewardDiv = document.getElementById("reward");
         rewardDiv.innerHTML = `Next Click Reward: $${reward.toFixed(2)}`;
     }
-    
 }
 
 let game;
@@ -156,6 +190,3 @@ function quitGame() {
         alert(`You quit the game. Your total winnings: $${game.balance.toFixed(2)}`);
     }
 }
-
-
-
