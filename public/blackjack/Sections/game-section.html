@@ -64,14 +64,16 @@
 
     <div id="rulesModal" class="modal">
         <div class="modal-content">
-            <h1>Game Rules</h1>
-            <div class="rules-list">
-                <p class="rule">1. Try to get as close to 21 without going over.</p>
-                <p class="rule">2. Each player starts with two cards, and the dealer has one card face down.</p>
-                <p class="rule">3. Aces can count as either 1 or 11, depending on which value benefits your hand.</p>
-                <p class="rule">4. If your first two cards are of the same value, you can split them into two hands.</p>
+            <div class="rules-section">
+                <h1>Game Rules</h1>
+                <div class="rules-list">
+                    <p class="rule">1. Try to get as close to 21 without going over.</p>
+                    <p class="rule">2. Each player starts with two cards, and the dealer has one card face down.</p>
+                    <p class="rule">3. Aces can count as either 1 or 11, depending on which value benefits your hand.</p>
+                    <p class="rule">4. If your first two cards are of the same value, you can split them into two hands.</p>
+                </div>
             </div>
-
+    
             <div class="actions-rules">
                 <h2>Button Actions</h2>
                 <p class="action-rule"><strong>Hit:</strong> Request another card to try to improve your hand total.</p>
@@ -79,10 +81,11 @@
                 <p class="action-rule"><strong>Stand:</strong> Keep your current hand and end your turn.</p>
                 <p class="action-rule"><strong>Split:</strong> If dealt two cards of the same value, split them into two separate hands.</p>
             </div>
-
+    
             <span class="close-button">&times;</span>
         </div>
     </div>
+    
 
     <script src="game-section.js"></script> 
 </body>
