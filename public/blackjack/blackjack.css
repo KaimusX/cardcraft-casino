@@ -1,94 +1,153 @@
+/* Body Styling */
 body {
-    background-color: black; /* Background color for the entire screen */
-    margin: 0; /* Remove default margin */
+    background-color: #2b2b2b; /* Dark background */
+    margin: 0;
     display: flex;
-    flex-direction: column; /* Stack elements vertically */
-    align-items: center; /* Center items horizontally */
-    height: 100vh; /* Full viewport height */
+    flex-direction: column;
+    align-items: center;
+    height: 100vh;
+    color: #ffffff;
 }
 
-/* Blackjack Table Sections*/
+/* Title Styling */
+.title-blackjack {
+    font-family: 'Arial Black', sans-serif;
+    font-size: 3rem; /* Increased size */
+    background: linear-gradient(45deg, #ffffff, #6d6868);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-align: center;
+    margin: 5px 0;
+}
+
+/* Blackjack Table Layout */
 .blackjack-table {
-    width: 98%;
-    display: flex; /* Use flexbox for layout */
-    height: calc(100% - 50px); /* Adjust for the title */
-    background-color: #35654d; /* Darker green for the table */
-    /*border: 10px solid white; Dark border */
-    border-radius: 15px; /* Rounded corners */
-    margin-bottom: 5px;
+    width: 95%; /* Increased width */
+    height: 95%; /* Adjust height to fit the design */
+    border-radius: 20px;
+    border: 20px solid #1a1a1a; 
+    padding: 10px; /* Increased padding */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.3);
+    display: flex;
+    flex-grow: 1;
+    gap: 20px; /* Add space between sections */
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.5),
+                inset 0 0 10px rgba(0, 0, 0, 0.5); 
 }
 
+
+/* Left Section: Dealer and Player Areas */
 .left-section {
     display: flex;
-    flex-direction: column; /* Stack sections vertically */
-    width: 60%; /* Take up half of the table's width */
-    padding: 5px;
-    border: solid red;
-
+    flex-direction: column;
+    flex: 1;
+    gap: 15px; /* Increased spacing */
 }
 
 .dealer-section,
 .player-section {
     flex: 1;
-    /* border: 2px solid #050505; Separator for sections */
-    padding: 5px; /* Padding inside each section */
-    box-sizing: border-box; /* Ensure padding doesn't affect width */
-    border: solid blue;
+    border-radius: 15px;
+    padding: 20px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.6);
+    background-color: #35654d; /* Dark green for the table */
 }
 
+/* Game Section */
 .game-section {
-    flex: 1; /* Take up the full height */
-    padding: 10px;
-    /* border-left: 2px solid #050505; Left separator */
-    border: solid yellow;
+    flex: 1;
+    border-radius: 15px;
+    flex-direction: column;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.7);
 }
 
-.title-blackjack {
-    font-family: 'Arial Black', sans-serif;
-    font-size: 4rem;
-    background: linear-gradient(45deg, #ffffff, #6d6868); /* Gradient from white to black */
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent; /* Makes the gradient apply only to text */
-    text-shadow: 0 0 8px rgba(0, 0, 0, 0.5);
-    margin: 2px;
-    text-align: center;
-    border: solid orange;
-}
-
-@keyframes flicker {
-    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% {
-        opacity: 1;
-    }
-    20%, 22%, 24%, 55% {
-        opacity: 0.8;
-    }
-}
-
-/* .title-container {
-    text-align: center;
-    margin-bottom: 20px;
-} */
-/*
-.dealer-cards, .player-cards {
-    display: flex;
-    gap: 5px; 
-    margin-top: 10px;
-    border: orchid solid;
-}
-*/
-/* Card styling */
+/* Card Styling */
 .card {
-    width: 10vw;
-    height: 15vh;
+    width: 15vw; /* Increased width */
+    height: 20vh; /* Increased height */
     background-color: white;
-    border: 1px solid #050505;
-    border-radius: 8px;
+    border: 2px solid #050505; /* Thicker border */
+    border-radius: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
     font-weight: bold;
-    font-size: 1.2em;
+    font-size: 1.8em; /* Larger font size */
     color: #333;
-    margin: 2px;
-    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.2);
+    margin: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.3);
+}
+
+/* Button Styling */
+.btn {
+    background-color: #ff5733;
+    color: white;
+    border: none;
+    padding: 15px 30px; /* Increased size */
+    font-size: 1.5rem; /* Larger font */
+    border-radius: 10px;
+    cursor: pointer;
+    transition: transform 0.2s, background-color 0.2s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.btn:hover {
+    background-color: #ff7733;
+    transform: scale(1.1); /* Increased hover scale */
+}
+
+.btn:active {
+    background-color: #cc2900;
+}
+
+/* Input Field */
+.bet-input {
+    padding: 15px; /* Increased padding */
+    font-size: 2rem; /* Larger text */
+    width: 80%; /* Wider input field */
+    margin: 10px 0;
+    border: 2px solid #ccc;
+    border-radius: 10px;
+}
+
+.bet-input:focus {
+    border-color: #ffcc00;
+    outline: none;
+}
+
+/* Rules Button */
+.rules-button {
+    font-size: 1.5rem;
+    background: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+
+.rules-button:hover {
+    transform: scale(5.0); /* Slightly enlarge on hover */
+}
+
+/* Modal Styling */
+.modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7); /* Dark overlay */
+    justify-content: center;
+    align-items: center;
+    z-index: 1000;
+}
+
+.modal-content {
+    background-color: #444; /* Match game background */
+    color: #fff;
+    border-radius: 10px;
+    width: 80%;
+    max-width: 600px;
+    padding: 20px;
+    box-shadow: 0 8px 16px rgba(0, 0, 0, 0.5);
+    text-align: left;
+    font-family: Arial, sans-serif;
 }
