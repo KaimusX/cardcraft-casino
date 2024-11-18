@@ -4,6 +4,7 @@
     padding: 20px;
     text-align: center;
     border-radius: 8px;
+    border: solid pink;
 }
 
 /* Input field styling */
@@ -43,7 +44,6 @@
     display: flex;
     flex-direction: column; /* Stack rows vertically */
     height: 100%; /* Full height for game container */
-
 }
 
 .game-row {
@@ -54,6 +54,7 @@
     border-radius: 5px;
     background-color: #35654d; /* Optional: background color for each row */
     flex: 1; /* Each row takes equal space */
+    border: solid purple;
 }
 
 .rules-button {
@@ -135,11 +136,13 @@
     display: flex;
     justify-content: center;
     gap: 50px;
+    border: solid gold;
 }
 
 .game-action-button {
-    font-size: 1.5rem;
-    padding: 10px 15px;
+    font-size: 1.8rem; /* Slightly larger font size */
+    width: 140px; /* Increased width */
+    height: 60px; /* Increased height */
     margin: 5px;
     border: 2px solid #050505;
     background-color: #d3d3d3; /* Light gray color for the buttons */
@@ -147,11 +150,16 @@
     border-radius: 8px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+    display: flex; /* Use flexbox for alignment */
+    justify-content: center; /* Center horizontally */
+    align-items: center; /* Center vertically */
 }
 
 .game-action-button:hover {
     background-color: #a9a9a9; /* Darker gray on hover */
 }
+
+
 
 /* Styling for the Action Rules Box */
 .actions-rules {

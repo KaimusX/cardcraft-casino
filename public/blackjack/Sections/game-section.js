@@ -9,6 +9,8 @@ function setupGameFunctions() {
     const dealerCardsContainer = document.querySelector(".hand-box"); // Dealer's card container
     const playerScoreDisplay = document.getElementById("playerScore");
     const dealerScoreDisplay = document.getElementById("dealerScore"); // Dealer's score display
+    const doubleButton = document.getElementById("double-button"); // Double button
+
     let playerScore = 0;
     let dealerScore = 0;
     let aceCount = 0;
@@ -225,6 +227,37 @@ function setupGameFunctions() {
     // Hide the modal when the close button is clicked
     closeButton.addEventListener("click", () => {
         rulesModal.style.display = "none";
+    });
+
+    doubleButton.addEventListener("click", () => {
+        if (currentBet > 0 && gameInProgress) {
+            // Double the player's bet
+            currentBet *= 2;
+    
+            // Update bet and balance displays
+            document.getElementById("currentBet").textContent = `$${currentBet}`;
+            document.getElementById("playerBalance").textContent = `$${playerBalance}`;
+    
+            // Draw one additional card and automatically stand
+            const card = drawCard();
+            if (card) {
+                playerScore += getCardValue(card);
+                adjustForAces();
+                updateScoreDisplay();
+    
+                // Create and append the new card image for the player
+                const cardImg = document.createElement('img');
+                cardImg.classList.add('deck-box');
+                cardImg.src = `PlayingCards/${card.image}`;
+                playerCardsContainer.appendChild(cardImg);
+            }
+    
+            // Disable the double button after using it
+            doubleButton.disabled = true;
+    
+            // Stand automatically after doubling
+            standButton.click();
+        }
     });
 
     // Hide the modal when clicking outside of the modal content

@@ -153,3 +153,27 @@ h1 {
 #signOutBtn {
     margin-top: 1rem;
 }
+
+/* Make the leaderboard button longer */
+.leaderboard {
+    width: 600px; /* Set the desired width for the leaderboard button */
+    height: 100px; /* Adjust height if necessary */
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border: 2px solid #00aaff; /* Blue border for distinction */
+    background-color: #444; /* Optional: slightly darker background */
+    margin: 1rem auto; /* Center the button if needed */
+}
+
+/* Adjust font size for leaderboard */
+.leaderboard .game-icon {
+    font-size: 2rem; /* Adjust icon size */
+    margin-bottom: 0.5rem;
+}
+
+.leaderboard .game-name {
+    font-size: 1.5rem; /* Slightly larger text for emphasis */
+    font-weight: bold;
+    color: #ffffff; /* Keep text legible */
+}
