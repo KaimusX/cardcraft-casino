@@ -1,125 +1,39 @@
+import { Board } from './board.js';
 
 class Mines {
     constructor(size, mines, initialBalance) {
-        this.size = size;
-        this.mines = mines;
+        this.board = new Board(size, mines);
         this.diamonds = 1;
         this.balance = initialBalance;
-        this.board = this.createBoard();
-        this.revealed = this.createRevealed();
         this.minesHit = false;
         this.updateBalance();
-        this.placeMines();
-        this.placeDiamonds()
+        this.placeDiamonds();
         this.renderBoard();
-        this.updateReward();
-    }
-    createBoard() {
-        let board = [];
-        for (let i = 0; i < this.size; i++) {
-            board.push([]);
-            for (let j = 0; j < this.size; j++) {
-                board[i].push(' ');
-            }
-        }
-        return board;
-    }
-
-    createRevealed() {
-        let revealed = [];
-        for (let i = 0; i < this.size; i++) {
-            revealed.push([]);
-            for (let j = 0; j < this.size; j++) {
-                revealed[i].push(false);
-            }
-        }
-        return revealed;
-    }
-
-    placeMines() {
-        let placedMines = 0;
-        while (placedMines < this.mines) {
-            let row = Math.floor(Math.random() * this.size);
-            let col = Math.floor(Math.random() * this.size);
-            if (this.board[row][col] !== 'M' && this.board[row][col] !== 'D') {
-                this.board[row][col] = 'M';
-                placedMines++;
-            }
-        }
-    }
-
-    placeDiamonds() {
-        let increase = Math.floor(this.mines / 5);
-        this.diamonds += increase;
-        let placedDiamonds = 0;
-        while (placedDiamonds < this.diamonds) {
-            let row = Math.floor(Math.random() * this.size);
-            let col = Math.floor(Math.random() * this.size);
-            if (this.board[row][col] !== 'M' && this.board[row][col] !== 'D') {
-                this.board[row][col] = 'D';
-                placedDiamonds++;
-            }
-        }
-    }
-
-    isMine(row, col) {
-        return this.board[row][col] === 'M';
-    }
-
-    isDiamond(row, col) {
-        return this.board[row][col] === 'D';
     }
 
     revealCell(row, col) {
-        if (this.revealed[row][col]) {
-            alert("This cell has already been revealed. Choose another one.");
-            return false;
-        }
-        if (this.isMine(row, col)) {
-            game.balance = 0;
-            let balanceDiv = document.getElementById("balance");
-            balanceDiv.innerHTML = `Current Balance: $${game.balance.toFixed(2)}`;
-            this.updateReward();
+        if (this.board.revealCell(row, col)) {
+            this.balance = 0;
             alert("You hit a mine! Game over.");
             this.minesHit = true;
-            this.revealAll();
-            return true;
-        }
-
-        if (this.isDiamond(row, col)) {
-            this.revealed[row][col] = true;
-            this.board[row][col] = 'D';
-            this.updateBalance(true);
+            this.board.revealAll();
+            this.renderBoard();
+        } else {
+            this.updateBalance();
             this.renderBoard();
             this.updateReward();
-            return true;
         }
-        this.revealed[row][col] = true;
-        this.board[row][col] = 'R';
-        this.updateBalance();
-        this.renderBoard();
-        this.updateReward();
-        return true;
-    }
-
-    revealAll() {
-        for (let i = 0; i < this.size; i++) {
-            for (let j = 0; j < this.size; j++) {
-                this.revealed[i][j] = true;
-            }
-        }
-        this.renderBoard();
     }
 
     winMultiplier() {
-        let revealedCells = this.revealed.flat().filter(cell => cell).length;
-        let mineRatio = this.mines / (this.size * this.size);
+        let revealedCells = this.board.revealed.flat().filter(cell => cell).length;
+        let mineRatio = this.board.mines / (this.board.size * this.board.size);
         if (mineRatio <= 0.1) {
-            return 1 + (revealedCells / (this.size * this.size)) * 4;
+            return 1 + (revealedCells / (this.board.size * this.board.size)) * 4;
         } else if (mineRatio <= 0.2) {
-            return 1 + (revealedCells / (this.size * this.size)) * 7;
+            return 1 + (revealedCells / (this.board.size * this.board.size)) * 7;
         } else {
-            return 1 + (revealedCells / (this.size * this.size)) * 9;
+            return 1 + (revealedCells / (this.board.size * this.board.size)) * 9;
         }
     }
 
@@ -131,29 +45,19 @@ class Mines {
         this.updateReward();
     }
 
-    checkWin() {
-        for (let i = 0; i < this.size; i++) {
-            for (let j = 0; j < this.size; j++) {
-                if (this.board[i][j] !== 'M' && !this.revealed[i][j]) {
-                    return false;
-                }
-            }
-        }
-        return true;
-    }
     renderBoard() {
         let gameDiv = document.getElementById("game");
         gameDiv.innerHTML = "";
         let table = document.createElement("table");
-        for (let i = 0; i < this.size; i++) {
+        for (let i = 0; i < this.board.size; i++) {
             let row = document.createElement("tr");
-            for (let j = 0; j < this.size; j++) {
+            for (let j = 0; j < this.board.size; j++) {
                 let cell = document.createElement("td");
-                if (this.revealed[i][j]) {
-                    if (this.isMine(i, j)) {
+                if (this.board.revealed[i][j]) {
+                    if (this.board.isMine(i, j)) {
                         cell.classList.add("mine");
                     }
-                    else if (this.isDiamond(i, j)) {
+                    else if (this.board.isDiamond(i, j)) {
                         cell.classList.add("diamond");
                     }
                     else {
@@ -173,20 +77,23 @@ class Mines {
         let rewardDiv = document.getElementById("reward");
         rewardDiv.innerHTML = `Next Click Reward: $${reward.toFixed(2)}`;
     }
-}
 
-let game;
-
-function startGame() {
-    let size = parseInt(document.getElementById("boardSize").value);
-    let mines = parseInt(document.getElementById("mineCount").value);
-    let initialBalance = parseFloat(document.getElementById("initialBalance").value);
-    game = new Mines(size, mines, initialBalance);
-}
-
-function quitGame() {
-    if (game) {
-        game.revealAll();
-        alert(`You quit the game. Your total winnings: $${game.balance.toFixed(2)}`);
+    checkWin() {
+        for (let i = 0; i < this.board.size; i++) {
+            for (let j = 0; j < this.board.size; j++) {
+                if (this.board.board[i][j] !== 'M' && !this.board.revealed[i][j]) {
+                    return false;
+                }
+            }
+        }
+        return true;
     }
 }
+
+
+export { Mines };
+
+
+
+
+
