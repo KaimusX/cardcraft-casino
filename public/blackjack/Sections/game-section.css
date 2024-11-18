@@ -1,32 +1,29 @@
-/* Container for betting and balance */
-.bet-container {
-    border-radius: 8px;
-}
-
 /* Input field styling */
 .bet-input {
     padding: 10px;
     font-size: 1rem;
     border-radius: 5px;
-    width: 60%;
+    width: 200px; /* Adjusted width for consistency */
     box-sizing: border-box; /* Ensures padding doesn't affect width */
+    margin-right: 10px; /* Adds space between input and button */
 }
 
 /* Button styling */
 .bet-button {
-    padding: 10px; /* Matches the .bet-input padding */
-    font-size: 1rem; /* Matches the .bet-input font size */
+    padding: 10px 20px; /* Matches button size with input */
+    font-size: 1rem;
     border-radius: 5px;
-    width: 60%; /* Same width as .bet-input */
     color: white;
     background-color: #4caf50;
     border: none;
     cursor: pointer;
-    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .bet-button:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Slightly darker green on hover */
+    transform: scale(1.05); /* Subtle hover effect */
 }
 
 /* Game container */
@@ -37,15 +34,17 @@
     max-width: 800px;
     color: #fff;
     font-family: Arial, sans-serif;
+    padding: 10px;
 }
 
 /* Row styling */
 .game-row {
     display: flex;
+    align-items: center; /* Vertically align items */
     background-color: #35654d;
-    padding: 15px;
+    padding: 30px;
     border-radius: 10px;
-    gap: 10px
+    gap: 15px; /* Space between row elements */
 }
 
 /* Button styling with a casino vibe */
@@ -55,15 +54,15 @@
     color: #fff;
     background: linear-gradient(45deg, #ffcc00, #ff8c00); /* Gold-like gradient */
     border: 3px solid #b87333; /* Copper/gold border */
-    border-radius: 8px; /* Softer, rounded corners */
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 2px 5px rgba(255, 255, 255, 0.2); /* Outer shadow + inner gloss */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 2px 5px rgba(255, 255, 255, 0.2); /* Outer shadow and gloss */
     cursor: pointer;
     transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Add slight text depth */
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Text depth */
 }
 
 .game-action-button:hover {
-    background: linear-gradient(45deg, #ffdd44, #ff9933); /* Lighter gold on hover */
+    background: linear-gradient(45deg, #ffdd44, #ff9933); /* Brighter gold on hover */
     transform: translateY(-2px); /* Lift effect */
     box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6), inset 0 3px 6px rgba(255, 255, 255, 0.3); /* Enhanced shadows */
 }
@@ -76,7 +75,7 @@
 
 /* Rules button */
 .rules-button {
-    font-size: 5rem;
+    font-size: 3rem; /* Adjusted size for better alignment */
     color: #fff;
     background: none;
     border: none;
@@ -85,9 +84,10 @@
 }
 
 .rules-button:hover {
-    transform: scale(1.4);
+    transform: scale(1.3); /* Slightly larger on hover */
 }
 
+/* Modal */
 .modal {
     display: none;
     position: fixed;
@@ -112,7 +112,7 @@
     gap: 15px;
 }
 
-
+/* Close button for modal */
 .close-button {
     position: absolute;
     top: 10px;
@@ -133,6 +133,7 @@
     box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
 }
 
+/* Keyframes for modal fade-in */
 @keyframes fadeIn {
     from {
         opacity: 0;
@@ -142,35 +143,36 @@
     }
 }
 
+/* Rules and actions list */
 .rules-list {
     flex-direction: column;
 }
 
 .rule {
-    background-color: #333; /* Darker background for rules */
-    border: 1px solid #555; /* Subtle border */
+    background-color: #333;
+    border: 1px solid #555;
     border-radius: 6px;
-    padding: 10px; /* Reduced padding for compact look */
+    padding: 10px;
     font-size: 0.95rem;
-    color: #ddd; /* Softer white for text */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3); /* Slightly stronger shadow */
+    color: #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
 }
 
 .actions-rules {
-    background-color: #2d2d2d; /* Contrast with rules */
+    background-color: #2d2d2d;
     padding: 12px;
     border-radius: 6px;
     box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
     width: 100%;
-    color: #fff; /* Keep text white for clarity */
+    color: #fff;
     font-size: 0.95rem;
     display: flex;
     flex-direction: column;
-    gap: 10px; /* Better spacing between actions */
+    gap: 10px;
 }
 
 .actions-rules h2 {
-    color: #ffcc00; /* Use yellow only for titles */
+    color: #ffcc00;
     font-size: 1.1rem;
     margin-bottom: 8px;
     align-self: center;
@@ -178,14 +180,13 @@
 
 .rules-section {
     display: flex;
-    flex-direction: column; /* Stack the heading and rules vertically */
-    width: 100%; /* Ensure it spans the full modal width */
+    flex-direction: column;
+    width: 100%;
 }
 
 .rules-section h1 {
     font-size: 2rem;
     margin: 0;
-    color: #ffcc00; /* Consistent theme color */
+    color: #ffcc00;
     align-self: center;
 }
-

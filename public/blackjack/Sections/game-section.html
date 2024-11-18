@@ -11,48 +11,28 @@
 <body>
     <div class="game-container">
         <div class="game-row bet-balance-section">
-            <div class="bet-display">
-                <span class="icon single-chip">
-                    <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="12" cy="12" r="10" stroke="black" stroke-width="2" fill="white"/>
-                        <circle cx="12" cy="12" r="5" fill="white"/>
-                    </svg>
-                </span>
-                <div class="bet-container">
-                    <input type="number" id="betInput" placeholder="Enter Bet Amount" class="bet-input">
-                    <button onclick="setBet()" class="bet-button">Place Bet</button>
-                    <p class="label">Current Bet: <span id="currentBet">$0</span></p>
-                </div>
-                
-            </div>
-            <div class="balance-display">
-                <span class="icon multiple-chips">
-                    <svg width="30" height="30" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <circle cx="10" cy="10" r="8" stroke="black" stroke-width="2" fill="white"/>
-                        <circle cx="14" cy="14" r="8" stroke="black" stroke-width="2" fill="red"/>
-                        <circle cx="18" cy="18" r="8" stroke="black" stroke-width="2" fill="black"/>
-                    </svg>
-                </span>
-                <span class="label">Balance: </span>
-                <span id="playerBalance" class="label">$100</span> <!-- Example starting balance -->
-            </div>
+            <p class="label"> Current Bet:
+                <span id="currentBet">$0</span>
+            </p>
+            <p class="label"> Balance: 
+                <span id="playerBalance" class="label">$100</span>
+            </p> <!-- Example starting balance -->
         </div>
-        
-        <div class="game-row button-container">
-            <div class="button-row">
+
+        <div class="game-row">
                 <button id="hit-button" class="game-action-button">Hit</button>
                 <button id="double-button" class="game-action-button">Double</button>
-            </div>
-            <div class="button-row">
                 <button id="stand-button" class="game-action-button">Stand</button>
-                <button id="reset-button" class="game-action-button">Reset</button>
-            </div>
+                <button id="reset-button" class="game-action-button">Reset</button>         
         </div>
+
         <div class="game-row">
             <button class="rules-button" title="Rules">📖</button>
+            <input type="number" id="betInput" placeholder="Enter Bet Amount" class="bet-input">
+            <button onclick="setBet()" class="bet-button">Place Bet</button>
         </div>
     </div>
-    
+
     <!-- Reference to the player card section -->
     <div id="playerSection" style="display: none;">
         <div class="card-container-plyr">
@@ -69,24 +49,27 @@
                 <div class="rules-list">
                     <p class="rule">1. Try to get as close to 21 without going over.</p>
                     <p class="rule">2. Each player starts with two cards, and the dealer has one card face down.</p>
-                    <p class="rule">3. Aces can count as either 1 or 11, depending on which value benefits your hand.</p>
-                    <p class="rule">4. If your first two cards are of the same value, you can split them into two hands.</p>
+                    <p class="rule">3. Aces can count as either 1 or 11, depending on which value benefits your hand.
+                    </p>
+                    <p class="rule">4. If your first two cards are of the same value, you can split them into two hands.
+                    </p>
                 </div>
             </div>
-    
+
             <div class="actions-rules">
                 <h2>Button Actions</h2>
                 <p class="action-rule"><strong>Hit:</strong> Request another card to try to improve your hand total.</p>
-                <p class="action-rule"><strong>Double:</strong> Double your initial bet and receive only one additional card.</p>
+                <p class="action-rule"><strong>Double:</strong> Double your initial bet and receive only one additional
+                    card.</p>
                 <p class="action-rule"><strong>Stand:</strong> Keep your current hand and end your turn.</p>
-                <p class="action-rule"><strong>Split:</strong> If dealt two cards of the same value, split them into two separate hands.</p>
+                <p class="action-rule"><strong>Split:</strong> If dealt two cards of the same value, split them into two
+                    separate hands.</p>
             </div>
-    
+
             <span class="close-button">&times;</span>
         </div>
     </div>
-    
-
-    <script src="game-section.js"></script> 
+    <script src="game-section.js"></script>
 </body>
+
 </html>
