@@ -7,6 +7,7 @@ function setupPlayerFunctions() {
 
 function setBet() {
     const betInput = document.getElementById("betInput");
+    const betButton = document.querySelector(".bet-button"); // Specifically target the Place Bet button
     const betValue = parseInt(betInput.value) || 0;  // Get the bet value from the input field
     const balance = playerBalance;
 
@@ -17,9 +18,13 @@ function setBet() {
         document.getElementById("playerBalance").textContent = `$${playerBalance}`;  // Update the balance
         console.log(`Bet placed: ${currentBet}`);
 
-        // Hide the input and button after the bet is placed
+        // Hide only the bet input and Place Bet button
         betInput.style.display = 'none';
-        document.querySelector("button").style.display = 'none';
+        betButton.style.display = 'none';
+
+        // Enable the Hit button after placing a bet
+        document.getElementById("hit-button").disabled = false;
+
     } else if (betValue > balance) {
         alert("Insufficient balance. Please enter a smaller bet.");
     } else {
@@ -28,6 +33,7 @@ function setBet() {
 
     betInput.value = '';  // Clear the input after placing the bet (optional)
 }
+
 
 // Reset the player bet and balance to defaults
 function resetPlayerState() {
