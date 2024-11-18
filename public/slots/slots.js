@@ -147,6 +147,9 @@ document.addEventListener('DOMContentLoaded', () => {
     // Get the <span> element that closes the modal
     const closeButton = document.querySelector('.close-button');
 
+    // Get the button to navigate to home page
+    const homeButton = document.querySelector('.home');
+
     // When the user clicks on the rules button, open the modal
     rulesButton.addEventListener('click', () => {
         modal.style.display = 'block';
@@ -177,4 +180,10 @@ document.addEventListener('DOMContentLoaded', () => {
             closeModal();
         }
     });
+
+    // When the user clicks on the home button, redirect to home page
+    homeButton.addEventListener('click', () => {
+        window.location.href = '../index.html';
+    });
+
 });
