@@ -29,7 +29,7 @@ body {
 }
 
 /* Rules Button */
-.rules {
+.rules, .home {
     width: 50px;
     height: 50px;
     background-image: linear-gradient(yellow 50%, orange 100%);
@@ -45,7 +45,11 @@ body {
     transition: background-image 0.3s;
 }
 
-.rules:hover {
+.home {
+    right: 80px;
+}
+
+.rules:hover, .home:hover {
     background-image: linear-gradient(orange 50%, yellow 100%);
 }
 
