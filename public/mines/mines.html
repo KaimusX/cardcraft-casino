@@ -7,9 +7,9 @@
 <body>
     <h1>Mines</h1>
     <div>
-        <label for="selection">Board Size: <input id="boardSize" type="number" value="10"></label><br><br>
-        <label for="selection">Mines: <input id="mineCount" type="number" value="10"></label><br><br>
-        <label for="selection"> Initial Balance: <input id="initialBalance" type="number" value="100"></label><br><br>
+        <label for="boardSize">Board Size: <input id="boardSize" type="number" value="10"></label><br><br>
+        <label for="mineCount">Mines: <input id="mineCount" type="number" value="10"></label><br><br>
+        <label for="initialBalance">Initial Balance: <input id="initialBalance" type="number" value="100"></label><br><br>
         <button onclick="startGame()">Start Game</button>
         <button onclick="quitGame()">Quit Game</button>
     </div>
@@ -18,8 +18,13 @@
         <div id="balance">Current Balance: $0.00</div>
         <div id="reward">Next Click Reward: $0.00</div>
     </div>
-    <script src="mines.js"></script>
+    <script type="module" src="board.js"></script>
+    <script type="module" src="mines.js"></script>
+    <script type="module" src="main.js"></script>
 </body>
 </html>
+
+
+
 
 
