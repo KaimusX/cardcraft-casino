@@ -177,3 +177,85 @@ h1 {
     font-weight: bold;
     color: #ffffff; /* Keep text legible */
 }
+
+/* Watch Ad Button Styling */
+#watchAdButton {
+    background-color: #ff5733; /* Same as .btn background */
+    color: white;
+    border: none;
+    padding: 1rem 2rem;
+    font-size: 1.1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    margin-top: 1rem; /* Add spacing above the button */
+}
+
+#watchAdButton:hover {
+    background-color: #ff7733; /* Same as .btn:hover background */
+    transform: scale(1.05);
+}
+
+#watchAdButton:active {
+    background-color: #cc2900; /* Same as .btn:active background */
+}
+
+/* Modal Styles */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1001;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0.8);
+}
+
+.modal-content {
+    background-color: #2b2b2b; /* Match the body background */
+    margin: 5% auto;
+    padding: 20px;
+    width: 80%;
+    max-width: 700px;
+    position: relative;
+    border-radius: 10px;
+    color: #ffffff; /* Ensure text is visible */
+    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.5); /* Add subtle shadow */
+}
+
+.close-ad-button {
+    color: #ffcc00; /* Match the gold color used in headings */
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-ad-button:hover,
+.close-ad-button:focus {
+    color: #ffffff;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+/* Modal heading */
+.modal-content h2 {
+    font-size: 2rem;
+    color: #0ffbff; /* Match the main heading color */
+    margin-bottom: 1rem;
+    text-align: center;
+    text-shadow: 2px 2px #000;
+}
+
+/* Video element styling */
+#adVideo {
+    width: 100%;
+    max-height: 400px;
+    border-radius: 5px;
+    outline: none;
+}
