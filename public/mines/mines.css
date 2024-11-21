@@ -85,7 +85,6 @@ table {
     border-radius: 12px;
     padding: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
-    overflow: visible;
 }
 
 
@@ -98,21 +97,23 @@ td {
     background: #2b2b3b;
     border: 1px solid #3a3a4a;
     cursor: pointer;
-    transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 
 td:not(.revealed):hover {
     transform: scale(1.1);
-    background-color: rgba(0, 255, 255, 0.2);
-    box-shadow: 0 0 10px rgba(0, 255, 255, 0.8);
-    z-index: 1;
+    background-color: rgba(0, 255, 255, 0.8);
+    box-shadow: 0 0 15px rgba(0, 255, 255, 0.8);
+
 }
 
 td.revealed:hover,
-td.diamond:hover {
+td.diamond:hover,
+td.mine:hover {
     background-color: rgba(255, 0, 0, 0.5);
-    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(255, 0, 0, 0.5);
+    transform: scale(1.1);
+
 }
 
 .mine {
@@ -127,22 +128,6 @@ td.diamond:hover {
 .revealed {
     background: url('pics/cash.PNG') no-repeat center center;
     background-size: contain;
-    animation: revealCell 0.4s ease-in-out;
-}
-
-@keyframes revealCell {
-    0% {
-        transform: scale(0);
-        opacity: 0;
-    }
-    100% {
-        transform: scale(1);
-        opacity: 1;
-    }
-}
-
-.mine:hover, .diamond:hover {
-    box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
 }
 
 #settings-container {
