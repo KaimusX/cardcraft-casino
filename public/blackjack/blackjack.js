@@ -55,11 +55,14 @@ function initializeGame() {
 
 // Function to update balance display
 function updateBalanceDisplay(balance) {
-    const balanceElement = document.getElementById("playerBalance");
-    if (balanceElement) {
-        balanceElement.textContent = `$${balance}`;
-    }
+    const balanceElements = document.querySelectorAll("#playerBalance"); // Selects all elements with id "playerBalance"
+    balanceElements.forEach((balanceElement) => {
+        if (balanceElement) {
+            balanceElement.textContent = `$${balance}`;
+        }
+    });
 }
+
 
 // Example of deducting bet from balance
 function placeBet(amount) {

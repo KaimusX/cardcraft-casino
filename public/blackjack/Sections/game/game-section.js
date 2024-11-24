@@ -20,18 +20,49 @@ export function setupGameFunctions() {
     const rulesButton = document.querySelector(".rules-button");
     const rulesModal = document.getElementById("rulesModal");
     const closeButton = document.querySelector(".close-button");
-
+    const betModal = document.getElementById("betModal");
+    const placeBetButton = document.getElementById("placeBetButton");
 
     // Game State
     let playerBalance = 100; // Initial balance
     let currentBet = 0;
     let playerScore = 0;
 
+    //
+    window.addEventListener("load", () => {
+        betModal.style.display = "block";
+    });
+    
+
     // Functions
-    function updateDisplay() {
-        playerBalanceDisplay.textContent = `$${playerBalance}`;
-        currentBetDisplay.textContent = `$${currentBet}`;
+
+    function toggleBetModal() {
+        betModal.style.display = betModal.style.display === "block" ? "none" : "block";
     }
+
+    function handleBet() {
+        const betAmount = parseInt(betInput.value);
+        if (betAmount > 0 && betAmount <= playerBalance) {
+            currentBet = betAmount;
+            playerBalance -= betAmount;
+            updateDisplay();
+            toggleBetModal(); // Hide the modal after placing the bet
+            console.log(`Bet placed: $${currentBet}`);
+        } else {
+            alert("Invalid bet amount.");
+        }
+    }
+    
+    function updateDisplay() {
+        const gameBalanceDisplay = document.querySelector("#playerBalance");
+        const modalBalanceDisplay = document.querySelector("#betModal #playerBalance");
+    
+        gameBalanceDisplay.textContent = `$${playerBalance}`;
+        if (modalBalanceDisplay) {
+            modalBalanceDisplay.textContent = `$${playerBalance}`;
+        }
+    }
+    
 
     function getCardValue(card) {
         if (["jack", "queen", "king"].includes(card.rank)) return 10;
@@ -82,6 +113,9 @@ export function setupGameFunctions() {
     resetButton.addEventListener("click", handleReset);
     rulesButton.addEventListener("click", toggleRulesModal);
     closeButton.addEventListener("click", toggleRulesModal);
+    placeBetButton.addEventListener("click", handleBet);
+    window.addEventListener("load", toggleBetModal); // Show modal on page load
+
 
     // Initialize Display
     updateDisplay();
