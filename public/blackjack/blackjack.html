@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="blackjack.css">
-    <link rel="stylesheet" href="./Sections/game-section.css">
-    <link rel="stylesheet" href="./Sections/player-section.css">
-    <link rel="stylesheet" href="./Sections/dealer-section.css">
+    <link rel="stylesheet" href="./Sections/dealer/dealer-section.css">
+    <link rel="stylesheet" href="./Sections/game/game-section.css">
+    <link rel="stylesheet" href="./Sections/player/player-section.css">
+    
     <title>Blackjack Game</title>
 </head>
 <body>
@@ -46,12 +47,12 @@
         }
 
         // Load each section
-        loadSection('dealer-container', 'Sections/dealer-section.html');
-        loadSection('player-container', 'Sections/player-section.html');
-        loadSection('game-container', 'Sections/game-section.html');
+        loadSection('dealer-container', 'Sections/dealer/dealer-section.html');
+        loadSection('player-container', 'Sections/player/player-section.html');
+        loadSection('game-container', 'Sections/game/game-section.html');
     </script>
-    <script src="./Sections/dealer-section.js"></script> <!-- Link to dealer section JavaScript -->
-    <script src="./Sections/player-section.js"></script> <!-- Link to player section JavaScript -->
-    <script src="./Sections/game-section.js"></script> <!-- Link to game section JavaScript -->
+    <script src="./Sections/dealer/dealer-section.js"></script> <!-- Link to dealer section JavaScript -->
+    <script src="./Sections/player/player-section.js"></script> <!-- Link to player section JavaScript -->
+    <script src="./Sections/game/game-section.js"></script> <!-- Link to game section JavaScript -->
 </body>
 </html>
