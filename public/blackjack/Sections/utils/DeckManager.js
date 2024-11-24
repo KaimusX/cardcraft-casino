@@ -1,4 +1,5 @@
 // DeckManager Singleton: Ensures only one deck instance exists
+console.log("DeckManager module loaded");
 const DeckManager = (function () {
     let instance;
 

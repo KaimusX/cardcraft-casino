@@ -6,7 +6,7 @@
 //     }
 
 //     // Register dealer as an observer
-//     addObserver({ update: observeGameEvents });
+//     addObserver(se{ update: observeGameEvents });
 // }
 
 // setupDealerFunctions();

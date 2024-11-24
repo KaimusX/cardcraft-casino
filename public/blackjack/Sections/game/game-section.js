@@ -1,10 +1,18 @@
-import DeckManager from '../../utils/DeckManager.js';
+console.log("game-section.js script loaded");
+
+import DeckManager from '../utils/DeckManager.js';
 
 function setupGameFunctions() {
+    console.log("Game functions initialized");
     const deckManager = DeckManager.getInstance(); // Singleton connection 
     const hitButton = document.getElementById("hit-button");
+    console.log("Hit Button:", hitButton);
     const playerCardsContainer = document.getElementById("deckContainer");
     const playerScoreDisplay = document.getElementById("playerScore");
+
+    if (!hitButton) {
+        console.error("Hit button not found in the DOM");
+    }
 
     // const rulesButton = document.querySelector(".rules-button");
     // const rulesModal = document.getElementById("rulesModal");
@@ -34,6 +42,7 @@ function setupGameFunctions() {
 
     hitButton.addEventListener("click", () => {
         const card = deckManager.drawCard();
+        console.log("Hit button clicked!");
         if (card) {
             playerScore += getCardValue(card);
             updateScoreDisplay();
@@ -161,7 +170,10 @@ function setupGameFunctions() {
     // });
 
     deckManager.initializeDeck();
+    
 }
 
-// Call setup function
-document.addEventListener("DOMContentLoaded", setupGameFunctions);
+export default function setupGameFunctions() {
+    console.log("Game functions initialized");
+    // Your existing setup logic here...
+}

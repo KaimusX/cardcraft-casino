@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -7,9 +8,9 @@
     <link rel="stylesheet" href="Sections/dealer/dealer-section.css">
     <link rel="stylesheet" href="Sections/game/game-section.css">
     <link rel="stylesheet" href="Sections/player/player-section.css">
-    
     <title>Blackjack Game</title>
 </head>
+
 <body>
     <h1 class="title-blackjack">BLACKJACK</h1>
     <div class="blackjack-table">
@@ -19,40 +20,9 @@
         </div>
         <div id="game-container" class="game-section"></div>
     </div>
-    <script>
-        // Function to load a section from an HTML file into a container
-        function loadSection(containerId, file) {
-            fetch(file)
-                .then(response => response.text())
-                .then(data => {
-                    document.getElementById(containerId).innerHTML = data;
-                    // Call the function to initialize the loaded section
-                    initializeSection(containerId);
-                })
-                .catch(error => console.error('Error loading section:', error));
-        }
 
-        // Initialize functionality based on the loaded section
-        function initializeSection(sectionId) {
-            if (sectionId === 'dealer-container') {
-                // Initialize dealer functionalities
-                setupDealerFunctions(); // This function is now defined in dealer-section.js
-            } else if (sectionId === 'player-container') {
-                // Initialize player functionalities
-                setupPlayerFunctions(); // This function is now defined in player-section.js
-            } else if (sectionId === 'game-container') {
-                // Initialize game functionalities
-                setupGameFunctions(); // This function is now defined in game-section.js
-            }
-        }
-
-        // Load each section
-        loadSection('dealer-container', 'Sections/dealer/dealer-section.html');
-        loadSection('player-container', 'Sections/player/player-section.html');
-        loadSection('game-container', 'Sections/game/game-section.html');
-    </script>
-    <script src="Sections/dealer/dealer-section.js"></script> <!-- Link to dealer section JavaScript -->
-    <script src="Sections/player/player-section.js"></script> <!-- Link to player section JavaScript -->
-    <script src="Sections/game/game-section.js"></script> <!-- Link to game section JavaScript -->
+    <!-- Link to external JavaScript file -->
+    <script src="blackjack.js" type="module"></script>
 </body>
+
 </html>
