@@ -123,7 +123,25 @@
                     <span class="game-name">Slots</span>
                 </div>
             </div>
+            <div class="game-card leaderboard" onclick="window.location.href='./leaderboard/leaderboard.html'">
+              <span class="game-icon">🏆</span>
+              <span class="game-name">Leaderboard</span>
+            </div>
+            <!-- Add the Watch Ad button -->
+            <button id="watchAdButton">Watch Ad to Earn $10</button>
             `;
+
+      const watchAdButton = document.getElementById('watchAdButton');
+      if (watchAdButton) {
+        watchAdButton.addEventListener('click', () => {
+          if (auth.currentUser) {
+            showAdModal();
+          } else {
+            alert('Please sign in to watch ads and earn rewards.');
+          }
+        });
+        
+      }
 
     } else {
       // not signed in
@@ -174,6 +192,11 @@ function displayError(message) {
     }
   }
 
+  // Function to get ad video URL from GitHub
+function getAdVideoURL(filename) {
+  return `https://raw.githubusercontent.com/Yemosky02/ad-videos/main/${filename}`;
+}
+
 // Function to update user balance across games
 export async function updateBalance(uid, amount, operation) {
   console.log("updateBalance called with:", uid, amount, operation); // Debug log
@@ -208,5 +231,64 @@ export async function updateBalance(uid, amount, operation) {
   } catch (error) {
     console.error("Error updating user balance: ", error);
     return null;
+  }
+}
+
+async function showAdModal() {
+  const adModal = document.getElementById('adModal');
+  const adVideo = document.getElementById('adVideo');
+  const closeAdButton = document.querySelector('.close-ad-button');
+
+  if (adModal && adVideo) {
+    // Get the ad video URL
+    const videoURL = getAdVideoURL('ad1.mp4'); // Adjust as needed
+
+    if (videoURL) {
+      adVideo.src = videoURL;
+      adModal.style.display = 'block';
+      closeAdButton.style.display = 'none'; // Hide close button until ad ends
+
+      // Play the video
+      adVideo.play();
+
+      // When video ends
+      adVideo.onended = () => {
+        closeAdButton.style.display = 'block'; // Show close button
+        rewardUserForAd();
+      };
+
+      // Close modal when close button is clicked
+      closeAdButton.onclick = () => {
+        adModal.style.display = 'none';
+        adVideo.pause();
+        adVideo.currentTime = 0;
+        adVideo.src = '';
+      };
+    } else {
+      alert('Failed to load ad. Please try again later.');
+    }
+  } else {
+    console.error('Ad modal or video element not found.');
+  }
+}
+
+async function rewardUserForAd() {
+  const rewardAmount = 10; // Amount to reward the user
+
+  if (auth.currentUser) {
+    const newBalance = await updateBalance(auth.currentUser.uid, rewardAmount, 'add');
+
+    if (newBalance !== null) {
+      // Update balance on the page
+      const balanceElement = document.querySelector('.balance-amount');
+      if (balanceElement) {
+        balanceElement.textContent = `$${newBalance}`;
+      }
+      alert(`You've earned $${rewardAmount}! Your new balance is $${newBalance}.`);
+    } else {
+      alert('Error updating your balance. Please try again later.');
+    }
+  } else {
+    alert('You need to be signed in to earn rewards.');
   }
 }
