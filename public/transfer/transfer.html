@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Transfer Money</title>
+  <link rel="stylesheet" href="transfer.css">
+  <script type="module" src="transfer.js" defer></script>
+  <script>
+    function goToHome() {
+    window.location.href = "../index.html";
+    }
+  </script>
+</head>
+<body>
+  <div class="transfer-container">
+    <h1>Transfer Money</h1>
+    <form id="transferForm">
+      <div class="form-group">
+        <label for="uid">Recipient UID</label>
+        <input type="text" id="uid" name="uid" placeholder="Enter recipient's UID" required>
+      </div>
+      <div class="form-group">
+        <label for="amount">Amount</label>
+        <input type="number" id="amount" name="amount" placeholder="Enter amount to transfer" required>
+      </div>
+      <div class="button-container">
+        <button id="transferButton" type="submit" class="btn">Transfer</button>
+        <button id="homeButton" onclick="goToHome()">Return Home</button>
+      </div>
+    </form>
+    <ul id="errorMessages" class="error-messages"></ul>
+    <div id="successMessage" class="success-message"></div>
+  </div>
+</body>
+</html>

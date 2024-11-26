@@ -109,6 +109,9 @@
         <h5>UID: ${user.uid}</h5>
             <p class="balance-label">Balance:</p>
             <p class="balance-amount">$${currentBalance}</p>
+            <div class="transfer-money-container">
+              <button id="transferMoneyBtn" class="btn" onclick="window.location.href='./transfer/transfer.html'">Transfer Money</button>
+            </div>
             <div class="game-selection">
                 <div class="game-card blackjack" onclick="window.location.href='./blackjack/blackjack.html'">
                     <span class="game-icon">♠️</span>
