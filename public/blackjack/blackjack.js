@@ -1,6 +1,6 @@
 // Import utilities
 import { fetchOrCreateUserBalance, getCurrentUser } from './Sections/utils/firebaseUtils.js';
-import DeckManager from './Sections/utils/DeckManager.js';
+import { setupGameFunctions, updateDisplay } from './Sections/game/game-section.js';
 
 let playerBalance = 0;
 
@@ -29,9 +29,9 @@ function initializeSection(sectionId) {
     if (sectionId === 'game-container') {
         setupGameFunctions(); // Game-specific logic
     } else if (sectionId === 'player-container') {
-        setupPlayerFunctions(); // Player-specific logic
+       // setupPlayerFunctions(); // Player-specific logic
     } else if (sectionId === 'dealer-container') {
-        setupDealerFunctions(); // Dealer-specific logic
+       // setupDealerFunctions(); // Dealer-specific logic
     }
 }
 
@@ -41,7 +41,7 @@ function initializeGame() {
         if (user) {
             console.log(`User signed in: ${user.displayName}`);
             playerBalance = await fetchOrCreateUserBalance(user.uid);
-            updateBalanceDisplay(playerBalance);
+            updateDisplay();
         } else {
             console.error("No user signed in. Please sign in to play.");
         }
@@ -51,28 +51,6 @@ function initializeGame() {
     loadSection('dealer-container', './Sections/dealer/dealer-section.html', './Sections/dealer/dealer-section.js');
     loadSection('player-container', './Sections/player/player-section.html', './Sections/player/player-section.js');
     loadSection('game-container', './Sections/game/game-section.html', './Sections/game/game-section.js');
-}
-
-// Function to update balance display
-function updateBalanceDisplay(balance) {
-    const balanceElements = document.querySelectorAll("#playerBalance"); // Selects all elements with id "playerBalance"
-    balanceElements.forEach((balanceElement) => {
-        if (balanceElement) {
-            balanceElement.textContent = `$${balance}`;
-        }
-    });
-}
-
-
-// Example of deducting bet from balance
-function placeBet(amount) {
-    if (amount > 0 && amount <= playerBalance) {
-        playerBalance -= amount;
-        updateBalanceDisplay(playerBalance);
-        console.log(`Bet placed: $${amount}`);
-    } else {
-        console.error("Invalid bet amount.");
-    }
 }
 
 // Start the game

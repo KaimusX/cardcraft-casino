@@ -19,9 +19,18 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 
 // Get current authenticated user
-export function getCurrentUser(callback) {
-    onAuthStateChanged(auth, callback);
+export function getCurrentUser() {
+    return new Promise((resolve, reject) => {
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                resolve(user);
+            } else {
+                resolve(null); // No user signed in
+            }
+        }, reject);
+    });
 }
+
 
 // Fetch or create user balance
 export async function fetchOrCreateUserBalance(uid) {
