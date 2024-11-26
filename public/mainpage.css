@@ -9,9 +9,11 @@ body {
     justify-content: center;
     height: 100vh;
     margin: 0;
+    padding: 0;
 }
 
 h1 {
+    text-align: center;
     font-size: 2.5rem;
     color: #0ffbff;
     margin-bottom: 2rem;
@@ -40,14 +42,83 @@ h1 {
     background-color: #cc2900;
 }
 
+.btn-google {
+    background-color: #4285f4;
+    margin-top: 1rem;
+    padding: 1rem 2rem;
+}
+
+.btn-google:hover {
+    background-color: #357ae8;
+}
+
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 270px;
+    padding: 1.5rem;
+    background-color: #333;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+.form-group {
+    width: 100%;
+}
+
+input {
+    display: block;
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #333;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+input:focus {
+    border-color: #ff5733;
+    outline: none;
+}
+
+/* Error message styling */
+.error-messages {
+    width: 100%;
+    color: #ff4d4d;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.error-messages li {
+    margin: 0.5rem 0;
+    list-style: none;
+}
+
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 1rem;
+    max-width: 380px;
+}
+
 /* Sign-in and game selection containers */
 #whenSignedOut, #whenSignedIn {
     text-align: center;
 }
 
 /* User details and game links */
-#userDetails h3 {
-    font-size: 1.8rem;
+#userDetails h5 {
+    font-size: 1.3rem;
     color: #ffcc00;
     margin-top: 1rem;
     margin-bottom: 1rem;
