@@ -24,6 +24,7 @@ let currentBet = 0;
 let dealerScore = 0;
 
 export const actions = {
+
     initialDeal: () => {
         const playerDeck = document.getElementById("deckContainer");
         const dealerDeck = document.querySelector(".hand-box");
@@ -54,47 +55,94 @@ export const actions = {
     },
 
     hit: new GameAction(() => {
-        const card = deckManager.drawCard();
-        if (card) {
-            playerScore += ["jack", "queen", "king"].includes(card.rank)
-                ? 10
-                : card.rank === "ace"
-                    ? 11
-                    : parseInt(card.rank);
+        const playerDeck = document.getElementById("deckContainer");
 
-            const cardImg = document.createElement("img");
-            cardImg.src = `PlayingCards/${card.image}`;
-            cardImg.classList.add("card");
-            document.getElementById("deckContainer").appendChild(cardImg);
+        // Deal one card to the player
+        const playerScoreRef = { value: playerScore }; // Pass current score by reference
+        dealCards(playerDeck, playerScoreRef, 1); // Deal one card using helper function
+        playerScore = playerScoreRef.value; // Update the player's score
 
-            // Update the player's score in the DOM
-            const playerScoreElement = document.getElementById("playerScore");
-            if (playerScoreElement) {
-                playerScoreElement.textContent = playerScore;
-            }
+        // Update the player's score display in the DOM
+        const playerScoreElement = document.getElementById("playerScore");
+        if (playerScoreElement) {
+            playerScoreElement.textContent = playerScore;
+        }
 
-            // Enable or disable the double button based on card count
-            const playerDeck = document.getElementById("deckContainer");
-            const doubleButton = document.getElementById("double-button");
-            if (playerDeck && playerDeck.children.length === 2) {
-                doubleButton.disabled = false; // Enable the double button
-            } else {
-                doubleButton.disabled = true; // Disable it otherwise
-            }
+        // Check for bust condition
+        if (playerScore > 21) {
+            alert("Bust! You lose. Score: " + playerScore);
 
+            // Disable all player actions since they lost
+            document.getElementById("hit-button").disabled = true;
+            document.getElementById("double-button").disabled = true;
+            document.getElementById("stand-button").disabled = true;
+
+            actions.reset.execute();
+        } else {
             console.log(`Player Score: ${playerScore}`);
+        }
+
+        // Manage double button state (if still active)
+        const doubleButton = document.getElementById("double-button");
+        if (playerDeck && playerDeck.children.length === 2) {
+            doubleButton.disabled = false; // Enable the double button
+        } else {
+            doubleButton.disabled = true; // Disable it otherwise
         }
     }),
 
+    stand: new GameAction(() => {
+        console.log("Player stands. Dealer's turn begins.");
+    
+        // Disable all player actions since their turn is over
+        document.getElementById("hit-button").disabled = true;
+        document.getElementById("double-button").disabled = true;
+        document.getElementById("stand-button").disabled = true;
+    
+        // Dealer's turn logic
+        dealerTurn();
+    }),    
+
     reset: new GameAction(() => {
-        playerBalance += currentBet;
+        console.log("Resetting the game...");
+        // Clear the player's and dealer's hands
+        const playerDeck = document.getElementById("deckContainer");
+        const dealerDeck = document.querySelector(".hand-box");
 
-        document.getElementById("deckContainer").innerHTML = "";
-        deckManager.initializeDeck();
+        if (playerDeck) {
+            playerDeck.innerHTML = ""; // Remove all cards
+        }
+        if (dealerDeck) {
+            dealerDeck.innerHTML = ""; // Remove all cards
+        }
 
-        updateDisplay(playerBalance);
-        showBetModal(playerBalance);
+        // Reset player and dealer scores
+        playerScore = 0;
+        dealerScore = 0;
+
+        // Reset score displays
+        const playerScoreElement = document.getElementById("playerScore");
+        const dealerScoreElement = document.getElementById("dealerScore");
+
+        if (playerScoreElement) {
+            playerScoreElement.textContent = playerScore;
+        }
+        if (dealerScoreElement) {
+            dealerScoreElement.textContent = dealerScore;
+        }
+
+        // Re-enable player actions for the next round
+        document.getElementById("hit-button").disabled = false;
+        document.getElementById("double-button").disabled = true; // Double only valid on initial hand
+        document.getElementById("stand-button").disabled = false;
+
+        setTimeout(() => {
+            location.reload(); // Reload to show the bet modal and reinitialize the game
+        }, 100);
     }),
+
+
+
 };
 
 // Helper Functions
@@ -115,4 +163,49 @@ function dealCards(deckContainer, scoreVariable, numberOfCards) {
                     : parseInt(card.rank);
         }
     }
+}
+
+function dealerTurn() {
+    console.log("Dealer's turn...");
+
+    const dealerDeck = document.querySelector(".hand-box");
+    const dealerScoreElement = document.getElementById("dealerScore");
+    const dealerScoreRef = { value: dealerScore };
+
+    // Dealer hits until their score is 17 or higher
+    while (dealerScoreRef.value < 17) {
+        dealCards(dealerDeck, dealerScoreRef, 1); // Dealer draws one card
+        dealerScore = dealerScoreRef.value; // Update the dealer's score
+
+        // Update dealer score display
+        if (dealerScoreElement) {
+            dealerScoreElement.textContent = dealerScore;
+        }
+
+        console.log(`Dealer's score: ${dealerScore}`);
+    }
+
+    // Check for dealer bust
+    if (dealerScore > 21) {
+        alert("Dealer busts! You win!");
+        actions.reset.execute(); // Reset the game
+        return;
+    }
+
+    // Determine the winner
+    determineWinner();
+}
+
+function determineWinner() {
+    console.log("Determining the winner...");
+
+    if (playerScore > dealerScore) {
+        alert(`You win! Your score: ${playerScore}, Dealer's score: ${dealerScore}`);
+    } else if (playerScore < dealerScore) {
+        alert(`You lose! Your score: ${playerScore}, Dealer's score: ${dealerScore}`);
+    } else {
+        alert(`It's a tie! Your score: ${playerScore}, Dealer's score: ${dealerScore}`);
+    }
+    // Reset the game for a new round
+    actions.reset.execute();
 }

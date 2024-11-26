@@ -99,7 +99,6 @@
     height: 100%;
     align-items: center;
     z-index: 1000;
-    animation: fadeIn 0.5s ease-in-out;
 }
 
 .modal-content {
@@ -127,7 +126,7 @@
     cursor: pointer;
     padding: 10px;
     box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
+
 }
 
 .close-button:hover {
@@ -205,7 +204,6 @@
     align-items: center;
     opacity: 0;
     visibility: hidden;
-    transition: opacity 0.3s ease, visibility 0.3s ease;
     z-index: 1000;
 }
 
@@ -256,7 +254,6 @@
     border: none;
     cursor: pointer;
     box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
-    transition: background-color 0.3s, transform 0.2s;
     text-transform: uppercase;
 }
 

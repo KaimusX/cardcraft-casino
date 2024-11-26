@@ -45,28 +45,21 @@ const BlackjackFacade = (() => {
     }
 
     function initializeSection(sectionId) {
-        console.log(`Initializing section: ${sectionId}`);
         switch (sectionId) {
             case 'game-container':
                 setupGameButtons();
-                // Ensure bet modal exists before showing it
                 const betModal = document.getElementById('betModal');
                 if (betModal) {
-                    showBetModal(playerBalance);
+                    showBetModal(playerBalance); // Show bet modal
                 } else {
                     console.error("Bet modal not found in the DOM.");
                 }
-                break;
-            case 'player-container':
-                console.log("Player section initialized."); // Placeholder
-                break;
-            case 'dealer-container':
-                console.log("Dealer section initialized."); // Placeholder
                 break;
             default:
                 console.error(`Unknown section: ${sectionId}`);
         }
     }
+    
 
     // Private: Setup game buttons
     function setupGameButtons() {
@@ -81,6 +74,7 @@ const BlackjackFacade = (() => {
     async function startGame() {
         await initializePlayerBalance();
 
+        
         // Load sections dynamically
         loadSection('dealer-container', './Sections/dealer/dealer-section.html', './Sections/dealer/dealer-section.js');
         loadSection('player-container', './Sections/player/player-section.html', './Sections/player/player-section.js');
