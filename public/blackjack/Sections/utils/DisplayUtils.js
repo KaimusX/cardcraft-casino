@@ -12,3 +12,17 @@ export function updateDisplay(balance) {
 
     console.log(`Balance updated to: $${balance}`);
 }
+
+export function updateCurrentBet(currentBet) {
+    if (isNaN(currentBet)) {
+        console.error("Invalid bet provided:", currentBet);
+        return;
+    }
+
+    const betElement = document.getElementById("currentBet");
+    if (betElement) {
+        betElement.textContent = `$${currentBet}`;
+    }
+
+    console.log(`Current Bet updated to: $${currentBet}`);
+}
