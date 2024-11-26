@@ -1,4 +1,5 @@
 import { updateDisplay } from './DisplayUtils.js';
+import { actions } from './GameActions.js';
 import { updateUserBalance } from './firebaseUtils.js';
 
 let playerBalance = 0; // The player's current balance
@@ -12,7 +13,7 @@ export function initializeBetting(balance) {
     }
 
     playerBalance = balance;
-    updateDisplay(playerBalance); // Update the UI with the initial balance
+    updateDisplay(playerBalance);
     console.log(`Betting initialized. Balance: $${playerBalance}`);
 }
 
@@ -35,7 +36,7 @@ export function placeBet(amount, balance) {
 
     // Update the UI
     updateDisplay(balance);
-    console.log(`Bet placed: $${currentBet}. Remaining balance: $${balance}`);
+    actions.initialDeal();
     return balance; // Return the updated balance
 }
 

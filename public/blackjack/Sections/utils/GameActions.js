@@ -21,51 +21,70 @@ const deckManager = DeckManager.getInstance();
 let playerScore = 0;
 let playerBalance = 0;
 let currentBet = 0;
+let dealerScore = 0;
 
 export const actions = {
+    initialDeal: () => {
+        const playerDeck = document.getElementById("deckContainer");
+        const dealerDeck = document.querySelector(".hand-box");
+
+        // Define scores as objects to pass by reference
+        const playerScoreRef = { value: 0 };
+        const dealerScoreRef = { value: 0 };
+
+        // Deal 2 cards to the player and dealer
+        dealCards(playerDeck, playerScoreRef, 2);
+        dealCards(dealerDeck, dealerScoreRef, 2);
+
+        // Update player and dealer scores
+        playerScore = playerScoreRef.value;
+        dealerScore = dealerScoreRef.value;
+
+        const playerScoreElement = document.getElementById("playerScore");
+        if (playerScoreElement) {
+            playerScoreElement.textContent = playerScore;
+        }
+
+        const dealerScoreElement = document.getElementById("dealerScore");
+        if (dealerScoreElement) {
+            dealerScoreElement.textContent = dealerScore;
+        }
+
+        console.log(`Player Score: ${playerScore}, Dealer Score: ${dealerScore}`);
+    },
+
     hit: new GameAction(() => {
-        const cardForPlayer = deckManager.drawCard();
-        const cardForDealer = deckManager.drawCard();
-    
-        // Update Player's Hand
-        if (cardForPlayer) {
-            playerScore += ["jack", "queen", "king"].includes(cardForPlayer.rank)
+        const card = deckManager.drawCard();
+        if (card) {
+            playerScore += ["jack", "queen", "king"].includes(card.rank)
                 ? 10
-                : cardForPlayer.rank === "ace"
+                : card.rank === "ace"
                     ? 11
-                    : parseInt(cardForPlayer.rank);
-    
-            const playerCardImg = document.createElement("img");
-            playerCardImg.src = `PlayingCards/${cardForPlayer.image}`;
-            playerCardImg.classList.add("card");
-            document.getElementById("deckContainer").appendChild(playerCardImg);
-    
+                    : parseInt(card.rank);
+
+            const cardImg = document.createElement("img");
+            cardImg.src = `PlayingCards/${card.image}`;
+            cardImg.classList.add("card");
+            document.getElementById("deckContainer").appendChild(cardImg);
+
+            // Update the player's score in the DOM
             const playerScoreElement = document.getElementById("playerScore");
             if (playerScoreElement) {
                 playerScoreElement.textContent = playerScore;
             }
-        }
-    
-        // Update Dealer's Hand
-        if (cardForDealer) {
-            // Dealer's hand container
-            const dealerHandContainer = document.querySelector(".hand-box");
-            if (!dealerHandContainer) {
-                console.error("Dealer hand container (.hand-box) not found in the DOM.");
-                return;
+
+            // Enable or disable the double button based on card count
+            const playerDeck = document.getElementById("deckContainer");
+            const doubleButton = document.getElementById("double-button");
+            if (playerDeck && playerDeck.children.length === 2) {
+                doubleButton.disabled = false; // Enable the double button
+            } else {
+                doubleButton.disabled = true; // Disable it otherwise
             }
-    
-            // Create the card image element
-            const dealerCardImg = document.createElement("img");
-            dealerCardImg.src = `PlayingCards/${cardForDealer.image}`; // Construct the path dynamically
-            dealerCardImg.classList.add("card");
-    
-            // Append the card to the dealer's hand container
-            dealerHandContainer.appendChild(dealerCardImg);
+
+            console.log(`Player Score: ${playerScore}`);
         }
-    
-        console.log(`Player Score: ${playerScore}, Dealer Score: ${dealerScore}`);
-    }),    
+    }),
 
     reset: new GameAction(() => {
         playerBalance += currentBet;
@@ -77,3 +96,23 @@ export const actions = {
         showBetModal(playerBalance);
     }),
 };
+
+// Helper Functions
+function dealCards(deckContainer, scoreVariable, numberOfCards) {
+    for (let i = 0; i < numberOfCards; i++) {
+        const card = deckManager.drawCard();
+        if (card) {
+            const cardImg = document.createElement("img");
+            cardImg.src = `PlayingCards/${card.image}`;
+            cardImg.classList.add("card");
+            deckContainer.appendChild(cardImg);
+
+            // Update the score variable
+            scoreVariable.value += ["jack", "queen", "king"].includes(card.rank)
+                ? 10
+                : card.rank === "ace"
+                    ? (scoreVariable.value + 11 > 21 ? 1 : 11)
+                    : parseInt(card.rank);
+        }
+    }
+}
