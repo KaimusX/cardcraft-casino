@@ -6,3 +6,4 @@
 - Karina Rivera
 - Antonio Urbina
 - Christian Rodriguez 
+- Dannell Munoz Silva

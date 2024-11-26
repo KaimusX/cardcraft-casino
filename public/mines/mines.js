@@ -3,25 +3,34 @@ import { Board } from './board.js';
 class Mines {
     constructor(size, mines, initialBalance) {
         this.board = new Board(size, mines);
-        this.diamonds = 1;
         this.balance = initialBalance;
         this.minesHit = false;
         this.updateBalance();
-        this.placeDiamonds();
         this.renderBoard();
     }
 
     revealCell(row, col) {
         if (this.board.revealCell(row, col)) {
-            this.balance = 0;
-            alert("You hit a mine! Game over.");
-            this.minesHit = true;
-            this.board.revealAll();
-            this.renderBoard();
-        } else {
+            if (this.board.isMine(row, col)) {
+                this.balance = 0;
+                alert("You hit a mine! Game over.");
+                this.minesHit = true;
+                this.board.revealAll();
+                this.renderBoard()
+                return true;
+            }
+
+            if (this.board.isDiamond(row, col)) {
+                this.updateBalance(true);
+                this.renderBoard();
+                this.updateReward();
+                return true;
+            }
+
             this.updateBalance();
             this.renderBoard();
             this.updateReward();
+            return true;
         }
     }
 
