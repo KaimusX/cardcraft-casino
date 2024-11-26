@@ -49,7 +49,6 @@ const BlackjackFacade = (() => {
         switch (sectionId) {
             case 'game-container':
                 setupGameButtons();
-
                 // Ensure bet modal exists before showing it
                 const betModal = document.getElementById('betModal');
                 if (betModal) {

@@ -3,10 +3,6 @@ import { getCurrentUser, updateUserBalance, fetchOrCreateUserBalance } from './f
 
 export function showBetModal(playerBalance) {
     const betModal = document.getElementById('betModal');
-    if (!betModal) {
-        console.error("Bet modal not found in the DOM.");
-        return;
-    }
 
     const balanceDisplay = document.querySelector("#betModal .player-balance-display");
     if (balanceDisplay) balanceDisplay.textContent = `$${playerBalance}`;
@@ -35,16 +31,10 @@ export function hideBetModal() {
 }
 
 export async function handlePlaceBet() {
-    console.log("handlePlaceBet called.");
     const betInput = document.getElementById("betInput");
     const betAmount = betInput ? betInput.value : null;
 
     const user = await getCurrentUser();
-    if (!user) {
-        console.error("No user signed in.");
-        return;
-    }
-
     const currentBalance = await fetchOrCreateUserBalance(user.uid);
 
     const updatedBalance = placeBet(betAmount, currentBalance);
@@ -52,5 +42,5 @@ export async function handlePlaceBet() {
         await updateUserBalance(user.uid, currentBalance - updatedBalance, "subtract");
         console.log("Bet placed successfully. Closing modal.");
         hideBetModal(); // Close the modal if the bet was successfully placed
-    }
+    } 
 }

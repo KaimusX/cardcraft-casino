@@ -1,4 +1,5 @@
 import { updateDisplay } from './DisplayUtils.js';
+import { updateUserBalance } from './firebaseUtils.js';
 
 let playerBalance = 0; // The player's current balance
 let currentBet = 0;    // The current bet placed by the player

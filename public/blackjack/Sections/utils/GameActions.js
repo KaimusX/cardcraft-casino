@@ -43,16 +43,11 @@ export const actions = {
 
     reset: new GameAction(() => {
         playerBalance += currentBet;
-        currentBet = 0;
-        playerScore = 0;
 
         document.getElementById("deckContainer").innerHTML = "";
         deckManager.initializeDeck();
 
         updateDisplay(playerBalance);
-
-        console.log("Game reset. Balance refunded:", playerBalance);
-
         showBetModal(playerBalance);
     }),
 };
