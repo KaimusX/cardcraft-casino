@@ -1,7 +1,6 @@
 // Import utilities
+import PlayerState from './Sections/utils/PlayerState.js';
 import { fetchOrCreateUserBalance, getCurrentUser } from './Sections/utils/firebaseUtils.js';
-import { updateDisplay } from './Sections/utils/DisplayUtils.js';
-import { setBalance } from './Sections/utils/BettingUtils.js';
 import { actions } from './Sections/utils/GameActions.js';
 import { showBetModal, handlePlaceBet } from './Sections/utils/ModalUtils.js';
 
@@ -16,8 +15,8 @@ const BlackjackFacade = (() => {
             if (user) {
                 console.log(`User signed in: ${user.displayName}`);
                 const balance = await fetchOrCreateUserBalance(user.uid);
-                updateDisplay(balance);
-                setBalance(balance); 
+
+                PlayerState.setBalance(balance);
             } else {
                 console.error("No user signed in. Please sign in to play.");
             }
@@ -67,7 +66,6 @@ const BlackjackFacade = (() => {
     // Private: Setup game buttons
     function setupGameButtons() {
         document.getElementById("hit-button").addEventListener("click", () => actions.hit.execute());
-        document.getElementById("reset-button").addEventListener("click", () => actions.reset.execute());
         document.getElementById("double-button").addEventListener("click", () => actions.double.execute());
         document.getElementById("stand-button").addEventListener("click", () => actions.stand.execute());
         document.getElementById("placeBetButton").addEventListener("click", handlePlaceBet);

@@ -6,7 +6,6 @@ const deckManager = DeckManager.getInstance();
 // Initialize game buttons and attach actions
 function setupGameButtons() {
     document.getElementById("hit-button").addEventListener("click", () => actions.hit.execute());
-    document.getElementById("reset-button").addEventListener("click", () => actions.reset.execute());
     document.getElementById("double-button").addEventListener("click", () => actions.double.execute());
     document.getElementById("stand-button").addEventListener("click", () => actions.stand.execute());
     console.log("Game buttons initialized.");
