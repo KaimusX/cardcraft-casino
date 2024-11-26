@@ -40,6 +40,57 @@ h1 {
     background-color: #cc2900;
 }
 
+.form-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 400px;
+}
+
+.form-group {
+    width: 100%;
+}
+
+input {
+    width: 100%;
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 1rem;
+    background-color: #333;
+    color: #fff;
+}
+
+input:focus {
+    border-color: #ff5733;
+    outline: none;
+}
+
+/* Error message styling */
+.error-messages {
+    width: 100%;
+    color: #ff4d4d;
+    font-size: 1rem;
+    margin-top: 0.5rem;
+    text-align: center;
+}
+
+.error-messages li {
+    margin: 0.5rem 0;
+    list-style: none;
+}
+
+/* Button container for sign-in and register buttons */
+.button-container {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    gap: 1rem;
+}
+
 /* Sign-in and game selection containers */
 #whenSignedOut, #whenSignedIn {
     text-align: center;
