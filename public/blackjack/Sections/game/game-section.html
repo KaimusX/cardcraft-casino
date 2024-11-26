@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="game-section.css">
+    <link rel="stylesheet" href="Sections/game/game-section.css">
     <title>Game Section</title>
 </head>
 
@@ -15,21 +15,18 @@
                 <span id="currentBet">$0</span>
             </p>
             <p class="label"> Balance: 
-                <span id="playerBalance" class="label">$100</span>
-            </p> <!-- Example starting balance -->
+                <span class="player-balance-display">$100</span>
+            </p>
         </div>
 
         <div class="game-row">
                 <button id="hit-button" class="game-action-button">Hit</button>
                 <button id="double-button" class="game-action-button">Double</button>
-                <button id="stand-button" class="game-action-button">Stand</button>
-                <button id="reset-button" class="game-action-button">Reset</button>         
+                <button id="stand-button" class="game-action-button">Stand</button>     
         </div>
         
         <div class="game-row">
             <button class="rules-button" title="Rules">📖</button>
-            <input type="number" id="betInput" placeholder="Enter Bet Amount" class="bet-input">
-            <button onclick="setBet()" class="bet-button">Place Bet</button>
         </div>
     </div>
 
