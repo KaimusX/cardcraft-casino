@@ -1,0 +1,121 @@
+/* Reuse the styles where possible */
+body {
+    font-family: Arial, sans-serif;
+    background: #2b2b2b;
+    color: #ffffff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    margin: 0;
+}
+
+.transfer-container {
+    background: #333;
+    padding: 2rem;
+    border-radius: 10px;
+    width: 100%;
+    max-width: 400px;
+    text-align: center;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+    font-size: 2rem;
+    color: #0ffbff;
+    margin-bottom: 1.5rem;
+    text-shadow: 1px 1px #000;
+}
+
+.form-group {
+    margin-bottom: 1rem;
+    text-align: left;
+}
+
+label {
+    font-size: 1rem;
+    margin-bottom: 0.5rem;
+    display: block;
+    color: #ccc;
+}
+
+input {
+    width: 93%;
+    padding: 0.8rem;
+    margin-bottom: 0.5rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    background-color: #444;
+    color: #fff;
+}
+
+input:focus {
+    border-color: #0ffbff;
+    outline: none;
+}
+
+.button-container {
+    margin-top: 1rem;
+}
+
+/* Transfer button styling */
+#transferButton {
+    background-color: #4caf50; /* Green button to signify action */
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4); /* Subtle shadow for depth */
+}
+
+#transferButton:hover {
+    background-color: #45a049; /* Slightly darker green on hover */
+    transform: scale(1.05); /* Grow effect for better feedback */
+}
+
+#transferButton:active {
+    background-color: #367437; /* Even darker green on active state */
+    transform: scale(0.95); /* Shrink effect for click feedback */
+}
+
+/* Home button styling */
+#homeButton {
+    background-color: #2196f3; /* Blue for navigation action */
+    color: white;
+    border: none;
+    padding: 0.8rem 2rem;
+    font-size: 1.2rem;
+    cursor: pointer;
+    border-radius: 8px;
+    transition: background-color 0.3s, transform 0.3s;
+    margin-left: 10px; /* Adds spacing if placed next to the transfer button */
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.4);
+}
+
+#homeButton:hover {
+    background-color: #1e88e5; /* Slightly darker blue on hover */
+    transform: scale(1.05); /* Grow effect for better feedback */
+}
+
+#homeButton:active {
+    background-color: #1565c0; /* Even darker blue on active state */
+    transform: scale(0.95); /* Shrink effect for click feedback */
+}
+
+.success-message {
+    margin-top: 1rem;
+    color: #00ff00;
+    font-weight: bold;
+    text-align: center;
+}
+
+.error-messages {
+    color: #ff4d4d;
+    font-size: 1rem;
+    list-style: none;
+    margin-top: 1rem;
+    padding: 0;
+}
