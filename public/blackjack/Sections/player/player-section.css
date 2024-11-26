@@ -46,4 +46,19 @@
     transition: transform 0.3s, box-shadow 0.3s;
 }
 
+.card {
+    width: 100px;
+    height: 140px;
+    border-radius: 5px;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    background-size: cover; /* Ensure card images fit perfectly */
+    border: 1px solid #ccc;
+    transition: transform 0.2s, box-shadow 0.2s;
+}
+
+.card:hover {
+    transform: scale(1.1);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
 
