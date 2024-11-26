@@ -1,55 +1,66 @@
+/* Dealer Score Container */
 .dealer-score-container {
     display: flex;
-    align-items: center;  /* Vertically center the items */
-    justify-content: center;  /* Horizontally center the items */
-    font-family: 'Arial', sans-serif;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    gap: 10px;
 }
 
 .dealer-header {
-    margin-right: 10px;  /* Space between "Player" and the score */
-    font-size: 2.2rem;
-    color: #ffffff;
+    font-size: 2.2rem; /* Slightly larger for better emphasis */
 }
 
 #dealerScore {
     font-size: 2.2rem;
-    color: #ffffff;  /* If you want the score to be bold and white */
+    font-weight: bold;
 }
 
-
+/* Card Container */
 .card-container {
-    display: flex; /* Use flexbox to arrange items side by side */
-    justify-content: center; /* Center the boxes horizontally */
-    gap: 50px;
-}
-
-.deck-container, .hand-container{
     display: flex;
-    flex-direction: column; /* Stack the label above the box */
-    align-items: center; /* Center the items */
+    align-items: center; /* Align cards vertically at the center */
+    gap: 10px; /* Space between cards */
+    padding: 10px 20px; /* Add padding inside the container */
+    width: 600px; /* Fixed width */
+    height: 220px; /* Fixed height for uniformity */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+    scroll-behavior: smooth; /* Optional: Smooth scrolling for a better UX */
+}
+
+.hand-container{
+    display: flex;
+    justify-content: flex-start;
+    gap: 10px; /* Space between cards */
+    overflow-x: auto; /* Enable horizontal scrolling */
+    padding: 10px 20px; /* Add padding inside the container */
+    width: 600px;
+    height: 220px; /* Fixed height for uniformity */
+    border-radius: 10px;
+
 }
 
 
-
-.deck-box, .hand-box {
-    background-color: #ffffff; /* Background color for the boxes */
-    width: 120px; /* Set a fixed width for the boxes */
-    height: 180px; /* Set a fixed height for the boxes to make them card-shaped */
-    border-radius: 8px; /* Rounded corners for a nicer look */
+/* Deck and Hand Containers */
+.deck-container, .hand-container {
+    align-items: center
 }
 
+/* Deck Box */
 .deck-box-delr {
-    background-image: url('../PlayingCards/card_back_black.png'); 
-    background-size: cover; /* Ensure the image covers the entire box */
-    background-position: center; /* Center the image */
-    background-repeat: no-repeat; /* Prevent the image from repeating */
-    padding: 20px; /* Inner spacing for the boxes */
-    width: 120px; /* Set a fixed width for the boxes */
-    height: 180px; /* Set a fixed height for the boxes to make them card-shaped */
-    border-radius: 8px; /* Rounded corners for a nicer look */
+    background-image: url('../PlayingCards/card_back_black.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    width: 140px;
+    height: 200px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.5); /* Add depth with shadow */
 }
 
-
-.hand-box {
-    background-color: #e0f7fa; /* Light background for the dealer's hand box */
+.hand-box{
+    width: 999px;
+    overflow-x:scroll;
+    display: flex;
 }
+

@@ -1,221 +1,192 @@
-/* Container for centering and spacing */
-.bet-container {
-    max-width: 400px;
-    padding: 20px;
-    text-align: center;
-    border-radius: 8px;
-    border: solid pink;
-}
-
 /* Input field styling */
 .bet-input {
     padding: 10px;
-    font-size: 16px;
-    margin-bottom: 15px;
-    border: 2px solid #ccc;
+    font-size: 1rem;
     border-radius: 5px;
-}
-
-.bet-input:focus {
-    border-color: #4CAF50;
-    outline: none;
+    width: 200px; /* Adjusted width for consistency */
+    box-sizing: border-box; /* Ensures padding doesn't affect width */
+    margin-right: 10px; /* Adds space between input and button */
 }
 
 /* Button styling */
 .bet-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    color: white;
-    background-color: #4CAF50;
-    border: none;
+    padding: 10px 20px; /* Matches button size with input */
+    font-size: 1rem;
     border-radius: 5px;
+    color: white;
+    background-color: #4caf50;
+    border: none;
     cursor: pointer;
-
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+    transition: background-color 0.3s, transform 0.2s;
 }
 
 .bet-button:hover {
-    background-color: #45a049;
+    background-color: #45a049; /* Slightly darker green on hover */
+    transform: scale(1.05); /* Subtle hover effect */
 }
 
-
-
-
+/* Game container */
 .game-container {
     display: flex;
-    flex-direction: column; /* Stack rows vertically */
-    height: 100%; /* Full height for game container */
-}
-
-.game-row {
-    justify-content: space-between; /* Space out items in each row */
-    align-items: center;
+    flex-direction: column;
+    gap: 20px;
+    max-width: 800px;
+    color: #fff;
+    font-family: Arial, sans-serif;
     padding: 10px;
-    /*border: 2px solid #050505; Optional: border for each row */
-    border-radius: 5px;
-    background-color: #35654d; /* Optional: background color for each row */
-    flex: 1; /* Each row takes equal space */
-    border: solid purple;
 }
 
+/* Row styling */
+.game-row {
+    display: flex;
+    align-items: center; /* Vertically align items */
+    background-color: #35654d;
+    padding: 30px;
+    border-radius: 10px;
+    gap: 15px; /* Space between row elements */
+}
+
+/* Button styling with a casino vibe */
+.game-action-button {
+    padding: 15px 30px;
+    font-size: 1.2rem;
+    color: #fff;
+    background: linear-gradient(45deg, #ffcc00, #ff8c00); /* Gold-like gradient */
+    border: 3px solid #b87333; /* Copper/gold border */
+    border-radius: 8px; /* Rounded corners */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5), inset 0 2px 5px rgba(255, 255, 255, 0.2); /* Outer shadow and gloss */
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.2s, box-shadow 0.2s;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7); /* Text depth */
+}
+
+.game-action-button:hover {
+    background: linear-gradient(45deg, #ffdd44, #ff9933); /* Brighter gold on hover */
+    transform: translateY(-2px); /* Lift effect */
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.6), inset 0 3px 6px rgba(255, 255, 255, 0.3); /* Enhanced shadows */
+}
+
+.game-action-button:active {
+    background: linear-gradient(45deg, #ffaa00, #cc6600); /* Darker gold when pressed */
+    transform: translateY(2px); /* Button press effect */
+    box-shadow: inset 0 3px 6px rgba(0, 0, 0, 0.5); /* Inner shadow for pressed look */
+}
+
+/* Rules button */
 .rules-button {
-    position: absolute;
-    bottom: 30px;
-    right: 30px;
-    font-size: 60px;
+    font-size: 3rem; /* Adjusted size for better alignment */
+    color: #fff;
     background: none;
     border: none;
     cursor: pointer;
-    transition: transform 0.3s, color 0.3s;
+    transition: transform 0.2s;
 }
 
 .rules-button:hover {
-    transform: scale(2.0); /* Slightly enlarge on hover */
+    transform: scale(1.3); /* Slightly larger on hover */
 }
 
-/* The modal background */
+/* Modal */
 .modal {
-    display: none; 
+    display: none;
     position: fixed;
     top: 0;
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.5); 
-    justify-content: center;
     align-items: center;
-    z-index: 1000; 
+    z-index: 1000;
+    animation: fadeIn 0.5s ease-in-out;
 }
 
 .modal-content {
-    background-color: white;
-    height: auto; /* Adjust height to fit content */
-    width: 70%;
-    max-width: 600px; /* Optional: Limits width on larger screens */
+    background: linear-gradient(145deg, #333, #555);
+    color: #ffcc00;
     border-radius: 10px;
-    position: relative;
-    padding: 20px;
-    box-sizing: border-box;
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    max-width: 800px;
+    font-family: Arial, sans-serif;
+    border: 2px solid #ffcc00;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.6);
+    display: flex;
+    gap: 15px;
 }
 
-.rules-list {
-    list-style: none; /* Removes default list styling */
-    padding: 0; /* Removes default padding */
-}
-
-.rule {
-    background-color: #f9f9f9; /* Light background for each rule */
-    border: 1px solid #e0e0e0; /* Light border */
-    border-radius: 5px; /* Rounded corners */
-    padding: 10px; /* Padding for each rule */
-    margin-bottom: 10px; /* Space between rules */
-}
-
+/* Close button for modal */
 .close-button {
     position: absolute;
     top: 10px;
     right: 10px;
-    font-size: 24px;
-    background-color: red;
-    color: white;
-    padding: 5px 10px;
+    font-size: 1.5rem;
+    color: #fff;
+    background: linear-gradient(145deg, #cc0000, #ff3333);
     border: none;
     border-radius: 5px;
     cursor: pointer;
+    padding: 10px;
+    box-shadow: 0 3px 6px rgba(0, 0, 0, 0.5);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
-/* Style the button container */
-.button-container {
+.close-button:hover {
+    transform: scale(1.1);
+    box-shadow: 0 5px 10px rgba(0, 0, 0, 0.6);
+}
+
+/* Keyframes for modal fade-in */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Rules and actions list */
+.rules-list {
+    flex-direction: column;
+}
+
+.rule {
+    background-color: #333;
+    border: 1px solid #555;
+    border-radius: 6px;
+    padding: 10px;
+    font-size: 0.95rem;
+    color: #ddd;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+}
+
+.actions-rules {
+    background-color: #2d2d2d;
+    padding: 12px;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.4);
+    width: 100%;
+    color: #fff;
+    font-size: 0.95rem;
     display: flex;
     flex-direction: column;
-    gap: 30px;
-}
-
-/* Style each row of buttons */
-.button-row {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    border: solid gold;
-}
-
-.game-action-button {
-    font-size: 1.8rem; /* Slightly larger font size */
-    width: 140px; /* Increased width */
-    height: 60px; /* Increased height */
-    margin: 5px;
-    border: 2px solid #050505;
-    background-color: #d3d3d3; /* Light gray color for the buttons */
-    color: #000; /* Black text for better contrast */
-    border-radius: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-    display: flex; /* Use flexbox for alignment */
-    justify-content: center; /* Center horizontally */
-    align-items: center; /* Center vertically */
-}
-
-.game-action-button:hover {
-    background-color: #a9a9a9; /* Darker gray on hover */
-}
-
-
-
-/* Styling for the Action Rules Box */
-.actions-rules {
-    margin-top: 20px;
-    padding: 15px;
-    border: 2px solid #050505; /* Dark border */
-    border-radius: 8px;
-    background-color: #f1f1f1; /* Light gray background */
-    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+    gap: 10px;
 }
 
 .actions-rules h2 {
-    font-size: 1.5rem;
-    margin-bottom: 10px;
-    color: #333;
-    text-align: center;
+    color: #ffcc00;
+    font-size: 1.1rem;
+    margin-bottom: 8px;
+    align-self: center;
 }
 
-.action-rule {
-    font-size: 1rem;
-    margin: 5px 0;
-    color: #333;
-}
-
-/* Bet and Balance section styling */
-.bet-balance-section {
+.rules-section {
     display: flex;
-    justify-content: space-around; /* Space items evenly */
-    align-items: center;
-    padding: 10px;
-    background-color: #35654d;
-    /*border: 2px solid #000000; */
-    border-radius: 8px;
+    flex-direction: column;
+    width: 100%;
 }
 
-.bet-display, .balance-display {
-    display: flex;
-    align-items: center;
-    gap: 20px; /* Space between icon, label, and amount */
-}
-
-.icon {
-    width: 40px; /* Size of the poker chip icons */
-    height: 30px;
-    display: inline-block;
-    vertical-align: middle;
-}
-
-.label {
-    font-weight: bold;
-    font-size: 1.8rem;
-    font-family: 'Arial', sans-serif;
-}
-
-.bet-amount, .balance-amount {
-    font-size: 1.6rem;
-    font-weight: bold;
-    color: #333; /* Text color */
+.rules-section h1 {
+    font-size: 2rem;
+    margin: 0;
+    color: #ffcc00;
+    align-self: center;
 }

@@ -1,5 +1,12 @@
 function setupDealerFunctions() {
-    // Add your dealer-specific functions here
-    console.log("Dealer functions initialized");
-    // Initialize dealer actions and properties
+    function observeGameEvents(event, data) {
+        if (event === "stand") {
+            console.log("Dealer turn: ", data);
+        }
+    }
+
+    // Register dealer as an observer
+    addObserver({ update: observeGameEvents });
 }
+
+setupDealerFunctions();

@@ -1,50 +1,49 @@
 .player-score-container {
     display: flex;
-    align-items: center;  /* Vertically center the items */
-    justify-content: center;  /* Horizontally center the items */
-    font-family: 'Arial', sans-serif;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    gap: 10px;
 }
 
 .player-header {
-    margin-right: 10px;  /* Space between "Player" and the score */
     font-size: 2.2rem;
-    color: #ffffff;
 }
 
 #playerScore {
     font-size: 2.2rem;
-    color: #ffffff;  /* If you want the score to be bold and white */
+    color: #fff;
+    font-weight: bold;
+    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.7);
 }
 
 .card-container-plyr {
-    display: flex; /* Use flexbox to arrange items */
-    justify-content: flex-start; /* Align items to the start */
-    align-items: flex-end; /* Align items at the bottom */
-    margin: 0 auto; /* Center the entire card container */
+    display: flex;
+    justify-content: flex-start;
+    align-items: center; /* Align cards at the center */
+    gap: 10px; /* Space between cards */
     overflow-x: auto; /* Enable horizontal scrolling */
-    white-space: nowrap; /* Prevent wrapping of cards */
-    max-width: 100%; /* Set a maximum width */
-    height: 220px; /* Fixed height for the container */
-    padding-left: 20px; /* Space for the first card */
+    padding: 10px 20px; /* Add padding inside the container */
+    width: 600px;
+    height: 220px; /* Fixed height for uniformity */
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .deck-container-plyr {
-    position: relative; /* Allow absolute positioning of children */
+    display: flex;
+    gap: -60px; /* Overlap cards slightly */
 }
 
 .deck-box {
-    background-color: #f9f9f9; /* Light background for the deck box */
-    padding: 20px; /* Inner spacing for the boxes */
-    width: 120px; /* Set a fixed width for the boxes */
-    height: 180px; /* Set a fixed height for the boxes to make them card-shaped */
-    border-radius: 8px; /* Rounded corners for a nicer look */
-    display: inline-block; /* Prevent stacking in flexbox */
-    margin-left: -40px; /* Pull cards to the left for overlap */
-    position: relative; /* Set position relative for layering */
-    z-index: 1; /* Ensure cards stack above each other */
-    border: black 2px solid;
+    width: 140px;
+    height: 200px;
+    border-radius: 8px;
+    border: 2px solid #444;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.5);
+    display: inline-block;
+    position: relative;
+    z-index: 1;
+    transition: transform 0.3s, box-shadow 0.3s;
 }
 
-.deck-box:nth-child(1) {
-    margin-left: 0; /* First card starts without negative margin */
-}
+

@@ -6,4 +6,4 @@
 - Karina Rivera
 - Antonio Urbina
 - Christian Rodriguez 
-- Akinyemi Akinjayeju
+- Dannell Munoz Silva
