@@ -8,6 +8,8 @@
     signInWithPopup,
     GoogleAuthProvider,
     onAuthStateChanged,
+    createUserWithEmailAndPassword,
+    signInWithEmailAndPassword
   } from "https://www.gstatic.com/firebasejs/11.0.1/firebase-auth.js";
 
   import {
@@ -45,6 +47,12 @@
   const signInButton = document.getElementById('signInBtn');
   const signOutButton = document.getElementById('signOutBtn');
 
+  const registerBtn = document.getElementById('registerBtn');
+  const emailSignInBtn = document.getElementById('emailSignInBtn');
+  const emailInput = document.getElementById('emailInput');
+  const passwordInput = document.getElementById('passwordInput');
+  const emailSignInDiv = document.getElementById('emailSignIn');
+
   const userDetails = document.getElementById('userDetails');
 
   if(signInButton && signOutButton && whenSignedIn && whenSignedOut) {
@@ -58,6 +66,39 @@
 
   signOutButton.onclick = () => auth.signOut();
 
+  registerBtn.onclick = () => {
+    const email = emailInput.value;
+    const password = passwordInput.value;
+    const auth = getAuth();
+
+    createUserWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log('User registered:', userCredential.user);
+        errorMessagesContainer.innerHTML = '';
+      })
+
+      .catch((error) => {
+        console.error('Error registering user:', error.message);
+        displayError(error.message);
+      });
+  };
+
+  emailSignInBtn.onclick = () => {
+    const auth = getAuth();
+    const email = emailInput.value;
+    const password = passwordInput.value;
+
+    signInWithEmailAndPassword(auth, email, password)
+      .then((userCredential) => {
+        console.log('User signed in:', userCredential.user);
+        errorMessagesContainer.innerHTML = '';
+      })
+      .catch((error) => {
+        console.error('Error signing in:', error.message);
+        displayError(error.message);
+      });
+  };
+
   onAuthStateChanged(auth, async (user) => {
     if (user) {
       // signed in
@@ -65,8 +106,7 @@
       whenSignedOut.hidden = true;
       const currentBalance = await fetchOrCreateUserBalance(user.uid);
       userDetails.innerHTML = `
-        <h3>Hello ${user.displayName}!</h3>
-            <p>User ID: ${user.uid}</p>
+        <h5>UID: ${user.uid}</h5>
             <p class="balance-label">Balance:</p>
             <p class="balance-amount">$${currentBalance}</p>
             <div class="game-selection">
@@ -110,6 +150,17 @@
       userDetails.innerHTML = "";
     }
   });
+}
+
+// Error handling
+const errorMessagesContainer = document.getElementById('errorMessages');
+
+function displayError(message) {
+  errorMessagesContainer.innerHTML = '';
+
+  const errorItem = document.createElement('li');
+  errorItem.textContent = message;
+  errorMessagesContainer.appendChild(errorItem);
 }
 
   // Firestore
@@ -241,4 +292,3 @@ async function rewardUserForAd() {
     alert('You need to be signed in to earn rewards.');
   }
 }
-
