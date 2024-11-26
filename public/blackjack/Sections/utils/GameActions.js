@@ -1,7 +1,8 @@
 // GameActions.js using 
 import DeckManager from '../utils/DeckManager.js';
 import { showBetModal } from './ModalUtils.js';
-import { updateDisplay } from './DisplayUtils.js';
+import { setBalance } from './BettingUtils.js'; 
+
 
 export class GameAction {
     constructor(action) {
@@ -91,6 +92,48 @@ export const actions = {
         }
     }),
 
+    double: new GameAction(() => {
+        console.log("Double action triggered.");
+    
+        // Ensure the player has enough balance to double the bet
+        if (currentBet * 2 > playerBalance + currentBet) {
+            alert("Insufficient balance to double the bet.");
+            return;
+        }
+    
+        // Double the bet and deduct the additional amount from the balance
+        const newBet = currentBet * 2; // Double the bet
+        const newBalance = playerBalance - currentBet; // Deduct the additional amount
+    
+        console.log("Updating balance and bet for double:", { newBalance, newBet });
+    
+        setBalance(newBalance, newBet); // Update balance and current bet
+    
+        // Deal one card to the player
+        const playerDeck = document.getElementById("deckContainer");
+        const playerScoreRef = { value: playerScore }; // Pass current score by reference
+        dealCards(playerDeck, playerScoreRef, 1); // Deal exactly one card
+        playerScore = playerScoreRef.value;
+    
+        // Update the player's score display
+        const playerScoreElement = document.getElementById("playerScore");
+        if (playerScoreElement) {
+            playerScoreElement.textContent = playerScore;
+        }
+    
+        // Check if player busts
+        if (playerScore > 21) {
+            alert(`Bust! You lose. Score: ${playerScore}`);
+            actions.reset.execute();
+            return;
+        }
+    
+        // End player's turn and trigger dealer's turn
+        actions.stand.execute();
+    }),
+    
+    
+
     stand: new GameAction(() => {
         console.log("Player stands. Dealer's turn begins.");
     
@@ -102,6 +145,40 @@ export const actions = {
         // Dealer's turn logic
         dealerTurn();
     }),    
+
+    double: new GameAction(() => {
+        console.log("Double action triggered.");
+
+        // Double the current bet
+        if (currentBet * 2 > playerBalance) {
+            alert("Insufficient balance to double the bet.");
+            return;
+        }
+
+        setBalance(playerBalance - currentBet, currentBet * 2); // Double the bet and deduct from balance
+
+        // Deal one card to the player
+        const playerDeck = document.getElementById("deckContainer");
+        const playerScoreRef = { value: playerScore }; // Pass current score by reference
+        dealCards(playerDeck, playerScoreRef, 1); // Deal exactly one card
+        playerScore = playerScoreRef.value;
+
+        // Update the player's score display
+        const playerScoreElement = document.getElementById("playerScore");
+        if (playerScoreElement) {
+            playerScoreElement.textContent = playerScore;
+        }
+
+        // Check if player busts
+        if (playerScore > 21) {
+            alert(`Bust! You lose. Score: ${playerScore}`);
+            actions.reset.execute();
+            return;
+        }
+
+        // End player's turn and trigger dealer's turn
+        actions.stand.execute();
+    }),
 
     reset: new GameAction(() => {
         console.log("Resetting the game...");
@@ -209,3 +286,15 @@ function determineWinner() {
     // Reset the game for a new round
     actions.reset.execute();
 }
+
+function updateDoubleButtonState() {
+    const doubleButton = document.getElementById("double-button");
+    const playerDeck = document.getElementById("deckContainer");
+
+    if (doubleButton && playerDeck && playerDeck.children.length === 2 && currentBet * 2 <= playerBalance) {
+        doubleButton.disabled = false; // Enable the double button
+    } else {
+        doubleButton.disabled = true; // Disable it otherwise
+    }
+}
+

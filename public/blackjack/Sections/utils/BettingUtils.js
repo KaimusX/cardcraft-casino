@@ -8,6 +8,8 @@ let currentBet = 0;    // The current bet placed by the player
 
 // Initialize betting with the player's starting balance
 export function setBalance(newBalance, newBet = 0) {
+    console.log("setBalance called with:", { newBalance, newBet });
+
     if (typeof newBalance !== "number" || newBalance < 0) {
         console.error("Invalid balance:", newBalance);
         return;
