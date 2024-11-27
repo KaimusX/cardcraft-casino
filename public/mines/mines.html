@@ -17,21 +17,17 @@
             <label for="mineCount">Mines</label>
             <input id="mineCount" type="number" value="10" min="1" max="50">
         </div>
-        <div class="setting-item">
-            <label for="initialBalance">Initial Balance</label>
-            <input id="initialBalance" type="number" value="100" min="10" max="1000">
-        </div>
         <div class="button-group">
             <button onclick="startGame()" class="btn">Start Game</button>
-            <button onclick="quitGame()" class="btn">Quit Game</button>
+            <button onclick="quitGame()" class="btn">Cash In</button>
         </div>
     </div>
     <div id="game-container">
         <div id="game"></div>
     </div>
     <div id="balance-reward-container">
-        <div id="balance">Current Balance: $0.00</div>
-        <div id="reward">Next Click Reward: $0.00</div>
+        <div id="AccReward">Current Winnings: $0.00</div>
+        <div id="NextReward">Next Click Reward: $0.00</div>
     </div>
     <script type="module" src="board.js"></script>
     <script type="module" src="mines.js"></script>
