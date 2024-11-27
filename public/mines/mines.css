@@ -59,7 +59,7 @@ body {
     max-width: 300px;
 }
 
-#balance {
+#AccReward {
     color: #00ff00;
     font-weight: bold;
     font-size: 1.5em;
@@ -68,7 +68,7 @@ body {
     margin-bottom: 15px;
 }
 
-#reward {
+#NextReward {
     color: darkblue;
     font-weight: bold;
     font-size: 1.2em;
@@ -86,7 +86,6 @@ table {
     padding: 10px;
     box-shadow: 0 4px 15px rgba(0, 0, 0, 0.5);
 }
-
 
 td {
     width: 50px;
@@ -125,6 +124,7 @@ td.mine:hover {
     background: url('pics/diamond.PNG') no-repeat center center;
     background-size: contain;
 }
+
 .revealed {
     background: url('pics/cash.PNG') no-repeat center center;
     background-size: contain;
