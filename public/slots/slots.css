@@ -360,3 +360,29 @@ body {
 .payout-table td {
     font-size: 1.2em;
 }
+
+/* Balance Display Styling */
+.balance-container {
+    text-align: center;
+    margin: 20px 0;
+    background: rgba(255, 255, 255, 0.1);
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: 2px solid orange;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+.balance-label {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #b8ffb3; /* Softer green for the label */
+    margin: 0;
+}
+
+.balance-amount {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #00ff00; /* Bright green for the balance amount */
+    margin: 0;
+}
+

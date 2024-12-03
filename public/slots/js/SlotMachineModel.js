@@ -20,6 +20,7 @@ class SlotMachineModel {
             '🍋': 1
         };
         this.betAmount = 1; // Default bet amount
+        this.balance = 0;   // User's balance
     }
 
     setBetAmount(amount) {
@@ -28,6 +29,14 @@ class SlotMachineModel {
 
     getBetAmount() {
         return this.betAmount;
+    }
+
+    setBalance(amount) {
+        this.balance = amount;
+    }
+
+    getBalance() {
+        return this.balance;
     }
 
     spinReels() {

@@ -4,6 +4,7 @@ class SlotMachineView {
         this.winAmountDisplay = document.querySelector('.win-amount');
         this.spinButton = document.querySelector('.spin-button');
         this.betButtons = document.querySelectorAll('.bet-button');
+        this.balanceAmountDisplay = document.querySelector('.balance-amount');
     }
 
     updateBetAmount(betAmount) {
@@ -12,6 +13,10 @@ class SlotMachineView {
 
     updateWinAmount(winAmount) {
         this.winAmountDisplay.textContent = `$${winAmount}`;
+    }
+    
+    updateBalanceDisplay(balance) {
+        this.balanceAmountDisplay.textContent = `$${balance}`;
     }
 
     disableSpinButton() {
