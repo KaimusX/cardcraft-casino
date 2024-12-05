@@ -5,29 +5,32 @@
     <link rel="stylesheet" type="text/css" href="mines.css">
 </head>
 <body>
+<div id="user-balance">Balance: $0.00</div>
 <h1>Mines</h1>
 <div id="main-container">
-    <div id="settings-container">
+    <div id="settings-container" class="centered">
         <h2>Game Settings</h2>
         <div class="setting-item">
             <label for="boardSize">Board Size</label>
-            <input id="boardSize" type="number" value="10" min="5" max="20">
-        </div>
-        <div class="setting-item">
+            <input id="boardSize" type="number" value="10" min="1" max="10">
             <label for="mineCount">Mines</label>
             <input id="mineCount" type="number" value="10" min="1" max="50">
+            <label for="betAmount">Bet Amount</label>
+            <input id="betAmount" type="number" value="0" min="1">
         </div>
         <div class="button-group">
             <button onclick="startGame()" class="btn">Start Game</button>
-            <button onclick="quitGame()" class="btn">Cash In</button>
         </div>
     </div>
     <div id="game-container">
         <div id="game"></div>
     </div>
-    <div id="balance-reward-container">
+    <div id="balance-reward-container" class="hidden">
         <div id="AccReward">Current Winnings: $0.00</div>
         <div id="NextReward">Next Click Reward: $0.00</div>
+    </div>
+    <div id="cash-in-container" class="hidden">
+        <button onclick="quitGame()" class="btn">Cash In</button>
     </div>
     <script type="module" src="board.js"></script>
     <script type="module" src="mines.js"></script>
