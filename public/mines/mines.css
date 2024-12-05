@@ -17,6 +17,20 @@ body {
     font-family: Arial, sans-serif;
 }
 
+#user-balance {
+    position: fixed;
+    top: 10px;
+    left: 10px;
+    background-color: #292930;
+    color: #ffffff;
+    font-size: 1.2rem;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    z-index: 1000; /* Ensure it appears above other elements */
+}
+
 #main-container {
     display: flex;
     justify-content: space-between;
@@ -27,16 +41,77 @@ body {
     margin: 0 auto;
 }
 
-#settings-container {
-    flex: 1;
+#balance-reward-container {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: flex-end; /* Align content to the right */
+    gap: 15px; /* Space between the rewards and the button */
     background-color: #1c1c24;
     padding: 20px;
     border-radius: 10px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
     max-width: 300px;
+}
+
+#balance-reward-container.hidden {
+    display: none;
+}
+
+#cash-in-container.hidden {
+    display: none;
+}
+
+#cash-in-container {
+    margin-top: 20px; /* Add space above the button */
+    text-align: center; /* Center align the button */
+}
+
+#cash-in-container .btn {
+    background-color: #ffcc00; /* Bright gold color for visibility */
+    color: #292930; /* Dark text for contrast */
+    font-size: 1.5rem; /* Larger font size for significance */
+    font-weight: bold;
+    padding: 15px 30px; /* Bigger padding for prominence */
+    border-radius: 10px; /* Smooth rounded corners */
+    border: none;
+    cursor: pointer;
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.3); /* Add a subtle shadow for depth */
+    transition: all 0.3s ease;
+}
+
+#cash-in-container .btn:hover {
+    background-color: #ffd700; /* Slightly brighter gold on hover */
+    transform: scale(1.1); /* Slight zoom effect */
+    box-shadow: 0 12px 20px rgba(0, 0, 0, 0.4); /* Enhanced shadow on hover */
+}
+
+#cash-in-container .btn:active {
+    transform: scale(1.05); /* Slightly reduced size on click */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2); /* Subtle shadow on click */
+}
+
+#settings-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    background-color: #1c1c24;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+    margin: 0 auto;
+    max-width: 400px;
+    width: 90%;
+    height: auto; /* Ensure the container adapts to its content */
+    box-sizing: border-box;
+}
+
+#settings-container.centered {
+    height: auto; /* Ensures the height is only as tall as its content */
+}
+
+#settings-container.hidden {
+    display: none;
 }
 
 #game-container {
@@ -154,7 +229,7 @@ td.mine:hover {
 .setting-item {
     display: flex;
     flex-direction: column;
-    margin-bottom: 15px;
+    margin-bottom: 25px; /* Increased spacing between items */
     width: 100%;
     padding: 0 50px;
     box-sizing: border-box;
@@ -162,8 +237,10 @@ td.mine:hover {
 
 .setting-item label {
     font-size: 1rem;
-    margin-bottom: 5px;
+    margin-bottom: 5px; /* Slight spacing between label and its input */
+    margin-top: 20px; /* Add space from the input above */
     color: #fff;
+    display: block; /* Ensure the label stays on its own line */
 }
 
 .setting-item input {
@@ -174,14 +251,37 @@ td.mine:hover {
     color: #fff;
     font-size: 1rem;
     width: 100%;
+    margin-top: 5px; /* Small space above the input */
+    box-sizing: border-box; /* Prevent width from exceeding the container */
 }
 
-.button-group {
-    display: flex;
-    justify-content: center;
-    gap: 10px;
+.setting-item input[type="number"] {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    background-color: #333;
+    color: #fff;
+    font-size: 1rem;
     width: 100%;
-    box-sizing: border-box;
+    appearance: textfield; /* Remove the default number input style */
+
+    /* Increase the click area for the arrows */
+}
+
+.setting-item input[type="number"]::-webkit-inner-spin-button {
+    width: 30px; /* Make the arrows larger */
+    height: 30px; /* Increase the arrow size */
+    background-color: #555; /* Background color of the arrows */
+    border-radius: 5px;
+}
+
+.setting-item input[type="number"]::-webkit-inner-spin-button:hover {
+    background-color: #777; /* Add hover effect */
+}
+
+.setting-item input[type="number"]:focus {
+    outline: none;
+    border: 1px solid #00ff00; /* Highlight the field when focused */
 }
 
 .btn {
@@ -195,6 +295,15 @@ td.mine:hover {
     border-radius: 5px;
     cursor: pointer;
     transition: all 0.3s;
+    width: 100%; /* Ensure all buttons are the same width */
+    box-sizing: border-box; /* Account for padding in width */
+}
+
+.button-group {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px; /* Adds space between the buttons */
+    width: 100%;
 }
 
 .btn:hover {

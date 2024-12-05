@@ -24,6 +24,23 @@ async function getUserBalance(uid) {
     return querySnapshot.empty ? null : querySnapshot.docs[0];
 }
 
+async function validateAndPlaceBet(uid, betAmount) {
+    const userDoc = await getUserBalance(uid);
+    if (!userDoc) {
+        alert("Error: User balance not found.");
+        return false;
+    }
+
+    const currentBalance = Math.floor(userDoc.data().balance);
+    if (betAmount > currentBalance) {
+        alert("Insufficient funds to place this bet.");
+        return false;
+    }
+    return true;
+}
+
+export { validateAndPlaceBet };
+
 async function updateBalance(uid, amount) {
     const userDoc = await getUserBalance(uid);
     if (!userDoc) {
@@ -50,7 +67,7 @@ class Mines {
         this.balance = initialBalance;
         this.initialBalance = initialBalance;
         this.minesHit = false;
-        this.updateBalance();
+        this.updateWinnings();
         this.renderBoard();
     }
 
@@ -59,20 +76,22 @@ class Mines {
             if (this.board.isMine(row, col)) {
                 this.balance = 0;
                 alert("You hit a mine! Game over.");
-                this.minesHit = true;
                 this.board.revealAll();
-                this.renderBoard()
+                this.renderBoard();
+                const cashInButton = document.querySelector("#cash-in-container .btn");
+                cashInButton.textContent = "Quit";
                 return true;
             }
 
+
             if (this.board.isDiamond(row, col)) {
-                this.updateBalance(true);
+                this.updateWinnings(true);
                 this.renderBoard();
                 this.updateReward();
                 return true;
             }
 
-            this.updateBalance();
+            this.updateWinnings();
             this.renderBoard();
             this.updateReward();
             return true;
@@ -83,22 +102,22 @@ class Mines {
         let revealedCells = this.board.revealed.flat().filter(cell => cell).length;
         let mineRatio = this.board.mines / (this.board.size * this.board.size);
         if (mineRatio <= 0.1) {
-            return 1 + (revealedCells / (this.board.size * this.board.size)) * 4;
+            return 1 + (revealedCells / (this.board.size * this.board.size)) * 3;
         } else if (mineRatio <= 0.2) {
-            return 1 + (revealedCells / (this.board.size * this.board.size)) * 7;
+            return 1 + (revealedCells / (this.board.size * this.board.size)) * 5;
         } else {
-            return 1 + (revealedCells / (this.board.size * this.board.size)) * 9;
+            return 1 + (revealedCells / (this.board.size * this.board.size)) * 8;
         }
     }
 
-    updateBalance(diamondHit = false) {
+    updateWinnings(diamondHit = false) {
         if (diamondHit) {
-            this.balance = Math.round(this.balance * this.winMultiplier() * 3); // Use integer math
+            this.balance = Math.round(this.balance * this.winMultiplier() * 2); // Use integer math
         } else {
             this.balance = Math.round(this.balance * this.winMultiplier()); // Round to nearest integer
         }
         let balanceDiv = document.getElementById("AccReward");
-        balanceDiv.innerHTML = `Current Balance: $${this.balance}`;
+        balanceDiv.innerHTML = `Current Winnings: $${this.balance - this.initialBalance}`;
         this.updateReward();
     }
 
@@ -129,10 +148,12 @@ class Mines {
         gameDiv.appendChild(table);
     }
 
+
+
     updateReward() {
-        let reward = Math.round(this.balance * this.winMultiplier());
+        let reward = Math.round((this.balance - this.initialBalance) * this.winMultiplier());
         let rewardDiv = document.getElementById("NextReward");
-        rewardDiv.innerHTML = `Next Click Reward: $${reward}`;
+        rewardDiv.innerHTML = `Winnings After Next Click: $${reward}`;
     }
 }
 
